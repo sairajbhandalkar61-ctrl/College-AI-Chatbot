@@ -8,7 +8,7 @@ A premium campus AI assistant powered by a Scikit-Learn Machine Learning intent 
 
 The application is deployed and currently accessible live worldwide at:
 
-👉 **[https://handled-favorites-aberdeen-mines.trycloudflare.com](https://handled-favorites-aberdeen-mines.trycloudflare.com)**
+👉 **[https://seeing-depth-rural-dressing.trycloudflare.com](https://seeing-depth-rural-dressing.trycloudflare.com)**
 
 ---
 
