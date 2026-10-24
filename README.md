@@ -209,13 +209,13 @@ Access the application at `http://127.0.0.1:5000`.
 
 ## Screenshots
 
-| Desktop Landing View | Active Conversation & ML Response |
+| Desktop Landing View (120Hz Core) | Active Conversation & Suggestion Chips |
 |:---:|:---:|
-| ![Cortex Desktop View](screenshots/cortex_desktop_landing.png) | ![Active Chat](screenshots/cortex_conversation_active.png) |
+| ![Enhanced Desktop View](screenshots/enhanced_120hz_desktop.png) | ![Active Chat with Suggestions](screenshots/enhanced_active_conversation.png) |
 
-| Mobile Responsive Layout |
-|:---:|
-| ![Mobile View](screenshots/cortex_mobile_landing.png) |
+| Mobile Viewport Layout | Mobile Navigation Drawer |
+|:---:|:---:|
+| ![Enhanced Mobile View](screenshots/enhanced_mobile_landing.png) | ![Mobile Drawer Navigation](screenshots/enhanced_mobile_drawer.png) |
 
 ---
 

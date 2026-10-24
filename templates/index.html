@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#F3F0F7">
     <title>Cortex • College AI Assistant</title>
 
@@ -19,12 +19,15 @@
 </head>
 <body class="cortex-body">
 
-    <!-- Outer Presentation Wrapper with Dreamy Ambient Background -->
+    <!-- 120Hz Ambient Canvas Background -->
+    <canvas id="ambient-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+    <!-- Outer Presentation Wrapper -->
     <div class="cortex-outer-wrapper">
         <div class="cortex-window-frame" id="window-frame">
 
             <!-- ===================================================================
-                 1. LEFT SIDEBAR (Cortex Design)
+                 1. LEFT SIDEBAR (Cleaned & Campus-Focused)
                  =================================================================== -->
             <aside class="sidebar-container" id="sidebar-container">
                 
@@ -39,6 +42,7 @@
                             </svg>
                         </div>
                         <span class="brand-name">Cortex</span>
+                        <span class="fps-badge" id="fps-counter" title="Dynamic Refresh Rate">120 FPS</span>
                     </div>
 
                     <button class="sidebar-icon-btn" id="sidebar-collapse-btn" aria-label="Toggle Navigation Drawer" title="Toggle Sidebar">
@@ -68,15 +72,16 @@
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
-                        <input type="text" id="sidebar-search-input" placeholder="Search" autocomplete="off" aria-label="Search past conversations">
-                        <span class="search-kbd-badge">⌘</span>
+                        <input type="text" id="sidebar-search-input" placeholder="Search topics..." autocomplete="off" aria-label="Search past topics">
+                        <span class="search-kbd-badge">⌘K</span>
                     </div>
                 </div>
 
                 <!-- Navigation Links List -->
                 <div class="sidebar-nav-scroll">
+                    <!-- Quick Topic Shortcuts -->
                     <div class="nav-links-group">
-                        <button class="nav-link-item active" id="nav-explore-btn">
+                        <button class="nav-link-item active" id="nav-all-btn" data-query="What is the admission process and eligibility?">
                             <span class="nav-icon">
                                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="12" cy="12" r="10"></circle>
@@ -84,69 +89,59 @@
                                     <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                                 </svg>
                             </span>
-                            <span class="nav-label">Explore</span>
+                            <span class="nav-label">Admissions</span>
                         </button>
 
-                        <button class="nav-link-item" id="nav-library-btn">
+                        <button class="nav-link-item" id="nav-courses-btn" data-query="What courses and engineering branches are offered?">
                             <span class="nav-icon">
                                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                                     <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
                                 </svg>
                             </span>
-                            <span class="nav-label">Library</span>
+                            <span class="nav-label">Curriculum</span>
                         </button>
 
-                        <button class="nav-link-item" id="nav-files-btn">
+                        <button class="nav-link-item" id="nav-fees-btn" data-query="How much is the college fee and scholarship options?">
                             <span class="nav-icon">
                                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                                 </svg>
                             </span>
-                            <span class="nav-label">Files</span>
+                            <span class="nav-label">Fees & Aid</span>
                         </button>
 
-                        <button class="nav-link-item" id="nav-history-btn">
+                        <button class="nav-link-item" id="nav-placements-btn" data-query="How are the college placements and top recruiting companies?">
                             <span class="nav-icon">
                                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                                 </svg>
                             </span>
-                            <span class="nav-label">History</span>
+                            <span class="nav-label">Placements</span>
                         </button>
                     </div>
 
-                    <!-- Chat History Categorized by Time (Cortex Style) -->
+                    <!-- Campus Topics Categorized by Relevance -->
                     <div class="history-section" id="history-section">
-                        <!-- Today -->
+                        <!-- Admissions & Academics -->
                         <div class="history-group">
-                            <div class="history-group-title">Today</div>
+                            <div class="history-group-title">Popular Inquiries</div>
                             <div class="history-items-list">
-                                <button class="history-item" data-query="What is the admission process and eligibility?">Create a detailed 7-day sprint plan f...</button>
-                                <button class="history-item" data-query="How much is the college fee for engineering?">Draft a concise email to stakeholder...</button>
-                                <button class="history-item" data-query="What courses and branches are offered?">Analyze the 'Eisenhower Matrix' an...</button>
+                                <button class="history-item" data-query="What is the admission process and cutoff score?">Admission process & cutoff</button>
+                                <button class="history-item" data-query="What engineering branches and courses are offered?">B.Tech branches & syllabus</button>
+                                <button class="history-item" data-query="How much is the annual college tuition fee?">Tuition & fee structure</button>
                             </div>
                         </div>
 
-                        <!-- Yesterday -->
+                        <!-- Campus Life -->
                         <div class="history-group">
-                            <div class="history-group-title">Yesterday</div>
+                            <div class="history-group-title">Campus Life</div>
                             <div class="history-items-list">
-                                <button class="history-item" data-query="How are the placements and highest packages?">Summarize the main differences be...</button>
-                                <button class="history-item" data-query="Does the college provide hostel facilities?">I need to negotiate an extension for ...</button>
-                            </div>
-                        </div>
-
-                        <!-- 7 days -->
-                        <div class="history-group">
-                            <div class="history-group-title">7 days</div>
-                            <div class="history-items-list">
-                                <button class="history-item" data-query="What are the college timings and schedule?">Generate 5 effective morning habits...</button>
-                                <button class="history-item" data-query="Does the college have a central library?">As a non-technical PM, list 5 crucial...</button>
-                                <button class="history-item" data-query="What sports and campus facilities are available?">Help me allocate 8 hours tomorrow:...</button>
-                                <button class="history-item" data-query="What events and cultural fests are organized?">We need a creative name for our ne...</button>
-                                <button class="history-item" data-query="How can I contact college administration?">Write a 100-word positive feedback...</button>
+                                <button class="history-item" data-query="Does the college provide hostel and mess facilities?">Hostel rooms & mess fees</button>
+                                <button class="history-item" data-query="What is the highest placement package and average CTC?">Placement statistics & CTC</button>
+                                <button class="history-item" data-query="What are the college timings and library hours?">Campus timings & library</button>
                             </div>
                         </div>
                     </div>
@@ -157,18 +152,17 @@
                     <div class="user-profile-card">
                         <div class="user-avatar-wrapper">
                             <div class="user-avatar-circle">
-                                <span>ES</span>
+                                <span>SB</span>
                             </div>
                         </div>
                         <div class="user-meta">
-                            <span class="user-name">Emerson Sterling</span>
-                            <span class="user-email">sterlingr@gmail.com</span>
+                            <span class="user-name">Sairaj Bhandalkar</span>
+                            <span class="user-email">Campus Student Portal</span>
                         </div>
-                        <button class="user-action-btn" id="logout-btn" title="Reset chat session" aria-label="Reset session">
+                        <button class="user-action-btn" id="voice-toggle-btn" title="Toggle Voice Readout" aria-label="Toggle voice">
                             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                <polyline points="16 17 21 12 16 7"></polyline>
-                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                             </svg>
                         </button>
                     </div>
@@ -185,7 +179,7 @@
                     <div class="header-left">
                         <!-- Mobile Hamburger Button -->
                         <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open Navigation">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="3" y1="12" x2="21" y2="12"></line>
                                 <line x1="3" y1="6" x2="21" y2="6"></line>
                                 <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -201,7 +195,7 @@
                                         <path d="M8 3v10M3 8h10" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
                                     </svg>
                                 </span>
-                                <span class="cortex-dropdown-label">Cortex</span>
+                                <span class="cortex-dropdown-label">Campus Assistant</span>
                                 <span class="cortex-dropdown-chevron">
                                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -209,42 +203,37 @@
                                 </span>
                             </button>
                             <div class="cortex-dropdown-menu" id="cortex-dropdown-menu">
-                                <button class="cortex-menu-item active" data-model="Cortex">Cortex General</button>
-                                <button class="cortex-menu-item" data-model="Admissions">Admissions Advisor</button>
+                                <button class="cortex-menu-item active" data-model="General">General Campus Query</button>
+                                <button class="cortex-menu-item" data-model="Admissions">Admissions & Eligibility</button>
                                 <button class="cortex-menu-item" data-model="Academics">Academic Syllabus</button>
-                                <button class="cortex-menu-item" data-model="Campus">Campus & Hostel</button>
+                                <button class="cortex-menu-item" data-model="Placements">Placements & Recruiters</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Right Action Controls -->
                     <div class="header-right">
-                        <button class="header-icon-btn" id="top-more-btn" title="Options" aria-label="More options">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="1"></circle>
-                                <circle cx="19" cy="12" r="1"></circle>
-                                <circle cx="5" cy="12" r="1"></circle>
-                            </svg>
-                        </button>
-
-                        <button class="header-icon-btn" id="top-link-btn" title="Share chat link" aria-label="Share link">
+                        <!-- Quick Share Link Button -->
+                        <button class="header-icon-btn" id="top-link-btn" title="Copy Live Website URL" aria-label="Share live link">
                             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
                                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
                             </svg>
                         </button>
 
-                        <button class="header-pill-btn" id="export-chat-btn" title="Export conversation">
+                        <!-- Export Conversation Button -->
+                        <button class="header-pill-btn" id="export-chat-btn" title="Export conversation as text file">
                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                 <polyline points="7 10 12 15 17 10"></polyline>
                                 <line x1="12" y1="15" x2="12" y2="3"></line>
                             </svg>
-                            <span>Export chat</span>
+                            <span>Export</span>
                         </button>
 
-                        <button class="header-solid-btn" id="upgrade-btn">
-                            <span>Upgrade</span>
+                        <!-- Reset / New Session Button -->
+                        <button class="header-solid-btn" id="clear-session-btn" title="Clear current session">
+                            <span>Clear chat</span>
                         </button>
                     </div>
                 </header>
@@ -252,94 +241,62 @@
                 <!-- Scrollable Main Content Container -->
                 <div class="cortex-scroll-container" id="cortex-scroll-container">
                     
-                    <!-- LANDING HERO STATE (Greeting, Orb, Cards) -->
+                    <!-- LANDING HERO STATE (Greeting, Interactive 120Hz Orb, Cards) -->
                     <div class="cortex-hero-state" id="cortex-hero-state">
                         
-                        <!-- Floating 3D Organic Liquid Violet Orb -->
-                        <div class="liquid-orb-container" aria-hidden="true">
-                            <div class="liquid-orb-aura"></div>
-                            <div class="liquid-orb-core">
+                        <!-- Floating 3D Interactive 120Hz Liquid Violet Orb with Sonic Physics -->
+                        <div class="liquid-orb-container" id="interactive-orb" aria-label="Interactive AI Core">
+                            <div class="liquid-orb-aura" id="orb-aura"></div>
+                            <div class="liquid-orb-core" id="orb-core">
                                 <div class="orb-specular-light"></div>
                                 <div class="orb-specular-swirl"></div>
+                                <div class="orb-soundwave" id="orb-soundwave">
+                                    <span></span><span></span><span></span><span></span>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Greeting Hero Typography -->
                         <div class="cortex-greeting-box">
-                            <h2 class="greeting-pretitle">Hello, Jackson</h2>
-                            <h1 class="greeting-maintitle">How can I assist you today?</h1>
+                            <h2 class="greeting-pretitle">Welcome to College AI</h2>
+                            <h1 class="greeting-maintitle">How can I assist your campus journey?</h1>
                         </div>
 
-                        <!-- Central Input Dock (Cortex Style) -->
+                        <!-- Central Input Dock (High Interaction) -->
                         <div class="cortex-input-card">
                             <div class="input-text-area-wrapper">
                                 <textarea 
                                     id="cortex-user-input" 
                                     class="cortex-textarea" 
                                     rows="1" 
-                                    placeholder="Ask me anything..." 
+                                    placeholder="Ask about admissions, courses, fees, hostels, or placements..." 
                                     autocomplete="off"
                                     autofocus
-                                    aria-label="Ask me anything"
+                                    aria-label="Ask College AI"
                                 ></textarea>
                             </div>
 
-                            <!-- Middle Toolbar inside Input Card -->
-                            <div class="input-middle-toolbar">
-                                <div class="toolbar-left">
-                                    <button class="deeper-research-btn" id="deeper-research-btn" title="Detailed campus search">
-                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <circle cx="12" cy="12" r="2"></circle>
-                                            <path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10 10 10 0 0 1-10-10 10 10 0 0 1 10-10z"></path>
-                                            <path d="m4.93 4.93 4.24 4.24"></path>
-                                            <path d="m14.83 14.83 4.24 4.24"></path>
-                                            <path d="m14.83 9.17 4.24-4.24"></path>
-                                            <path d="m4.93 19.07 4.24-4.24"></path>
-                                        </svg>
-                                        <span>Deeper Research</span>
+                            <!-- Interactive Campus Filter Chips -->
+                            <div class="input-chips-toolbar">
+                                <div class="chips-list">
+                                    <button class="filter-chip-btn" data-query="What is the admission procedure and eligibility?">
+                                        <span>🎓 Admission</span>
                                     </button>
-
-                                    <button class="tool-icon-btn" id="tool-image-btn" title="Add image" aria-label="Add image">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                                            <polyline points="21 15 16 10 5 21"></polyline>
-                                        </svg>
+                                    <button class="filter-chip-btn" data-query="What are the B.Tech courses and departments?">
+                                        <span>📚 Courses</span>
                                     </button>
-
-                                    <button class="tool-icon-btn" id="tool-idea-btn" title="Brainstorm ideas" aria-label="Idea prompt">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M9 18h6"></path>
-                                            <path d="M10 22h4"></path>
-                                            <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path>
-                                        </svg>
+                                    <button class="filter-chip-btn" data-query="What is the fee structure for engineering?">
+                                        <span>💰 Fees</span>
+                                    </button>
+                                    <button class="filter-chip-btn" data-query="Does the college have hostel facilities?">
+                                        <span>🏢 Hostel</span>
+                                    </button>
+                                    <button class="filter-chip-btn" data-query="What are the campus placement packages?">
+                                        <span>💼 Placements</span>
                                     </button>
                                 </div>
 
                                 <div class="toolbar-right">
-                                    <button class="tool-icon-btn" id="tool-model-btn" title="Model: DecisionTree v2.5" aria-label="Model chip">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                                            <rect x="9" y="9" width="6" height="6"></rect>
-                                            <line x1="9" y1="1" x2="9" y2="4"></line>
-                                            <line x1="15" y1="1" x2="15" y2="4"></line>
-                                            <line x1="9" y1="20" x2="9" y2="23"></line>
-                                            <line x1="15" y1="20" x2="15" y2="23"></line>
-                                            <line x1="20" y1="9" x2="23" y2="9"></line>
-                                            <line x1="20" y1="14" x2="23" y2="14"></line>
-                                            <line x1="1" y1="9" x2="4" y2="9"></line>
-                                            <line x1="1" y1="14" x2="4" y2="14"></line>
-                                        </svg>
-                                    </button>
-
-                                    <button class="tool-icon-btn" id="tool-web-btn" title="Campus Web Grounding" aria-label="Web search">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <circle cx="12" cy="12" r="10"></circle>
-                                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                                        </svg>
-                                    </button>
-
                                     <!-- Circular Lavender Microphone Button -->
                                     <button class="cortex-mic-btn" id="cortex-mic-btn" title="Voice Input (Speech-to-Text)" aria-label="Microphone">
                                         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -349,64 +306,56 @@
                                             <line x1="8" y1="23" x2="16" y2="23"></line>
                                         </svg>
                                     </button>
+
+                                    <!-- Send Arrow Button -->
+                                    <button class="cortex-send-btn" id="cortex-send-btn" title="Send question" aria-label="Send">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                        </svg>
+                                    </button>
                                 </div>
-                            </div>
-
-                            <!-- Bottom Sub-bar inside Input Card -->
-                            <div class="input-bottom-subbar">
-                                <button class="saved-prompts-btn" id="saved-prompts-btn">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                    </svg>
-                                    <span>Saved prompts</span>
-                                </button>
-
-                                <button class="attach-file-btn" id="attach-file-btn">
-                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
-                                    </svg>
-                                    <span>Attach file</span>
-                                </button>
                             </div>
                         </div>
 
-                        <!-- 3 Quick Suggestion Cards (Cortex Style) -->
+                        <!-- 3 Purpose-Driven Campus Action Cards -->
                         <div class="cortex-cards-grid">
                             
-                            <!-- Card 1: Synthesize Data / Admissions -->
+                            <!-- Card 1: Admissions & Cutoffs -->
                             <button class="cortex-action-card" data-query="What is the admission process and eligibility criteria?">
                                 <div class="card-icon-bubble">
                                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
-                                        <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
                                     </svg>
                                 </div>
-                                <h3 class="card-title">Synthesize Data</h3>
-                                <p class="card-subtext">Turn my meeting notes into 5 key bullet points for the team.</p>
+                                <h3 class="card-title">Admissions & Eligibility</h3>
+                                <p class="card-subtext">Check cutoff scores, eligibility requirements, and enrollment dates.</p>
                             </button>
 
-                            <!-- Card 2: Creative Brainstorm / Courses -->
+                            <!-- Card 2: Curriculum & Engineering -->
                             <button class="cortex-action-card" data-query="What courses and engineering branches are offered?">
                                 <div class="card-icon-bubble">
                                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 18h6"></path>
-                                        <path d="M10 22h4"></path>
-                                        <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path>
+                                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
                                     </svg>
                                 </div>
-                                <h3 class="card-title">Creative Brainstorm</h3>
-                                <p class="card-subtext">Generate 3 taglines for a new sustainable fashion brand.</p>
+                                <h3 class="card-title">Course Curriculum</h3>
+                                <p class="card-subtext">Explore B.Tech engineering branches, degree programs, and syllabus.</p>
                             </button>
 
-                            <!-- Card 3: Check Facts / Fees & Hostels -->
+                            <!-- Card 3: Fees & Placements -->
                             <button class="cortex-action-card" data-query="How much is the college fee and hostel accommodation?">
                                 <div class="card-icon-bubble">
                                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
                                     </svg>
                                 </div>
-                                <h3 class="card-title">Check Facts</h3>
-                                <p class="card-subtext">Compare key differences between GDPR and CCPA.</p>
+                                <h3 class="card-title">Fees & Accommodation</h3>
+                                <p class="card-subtext">View tuition fees, hostel room availability, and placement statistics.</p>
                             </button>
                         </div>
                     </div>
@@ -420,20 +369,15 @@
 
                 </div>
 
-                <!-- Footer Bar with Discord Community & Floating Badges -->
+                <!-- Sleek Minimal Footer Bar -->
                 <footer class="cortex-footer-bar">
-                    <div class="footer-community-text">
-                        <span>Join the valerius community for more insights</span>
-                        <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="discord-link">Join Discord</a>
+                    <div class="footer-status-pill">
+                        <span class="status-pulse-dot"></span>
+                        <span>College AI System Active • Scikit-Learn ML Backend</span>
                     </div>
 
-                    <div class="footer-floating-badges">
-                        <button class="badge-round-btn" id="translate-btn" title="Language options" aria-label="Translate">
-                            <span>文A</span>
-                        </button>
-                        <button class="badge-round-btn" id="help-btn" title="Help & Architecture" aria-label="Help">
-                            <span>?</span>
-                        </button>
+                    <div class="footer-meta-link">
+                        <span>Created by Sairaj Bhandalkar</span>
                     </div>
                 </footer>
 
@@ -447,13 +391,13 @@
                             placeholder="Ask a follow-up question..." 
                             autocomplete="off"
                         >
-                        <button class="dock-speech-btn" id="dock-speech-btn" title="Voice dictation">
+                        <button class="dock-speech-btn" id="dock-speech-btn" title="Voice dictation" aria-label="Voice input">
                             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
                                 <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
                             </svg>
                         </button>
-                        <button class="dock-submit-btn" id="dock-submit-btn" title="Send message">
+                        <button class="dock-submit-btn" id="dock-submit-btn" title="Send message" aria-label="Send">
                             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="22" y1="2" x2="11" y2="13"></line>
                                 <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
