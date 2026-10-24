@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+College-AI-Chatbot-main/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Operating System & IDE Artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Jupyter Notebook Checkpoints & Practice files
+.ipynb_checkpoints/
+*.ipynb
+
+# Local test, binaries & scrape scripts
+qa_suite.js
+verify_dribbble_ui.js
+verify_cortex_ui.js
+capture_dribbble.js
+download_full_shot.js
+download_new_shot.js
+fetch_dribbble.py
+cloudflared.exe
+dribbble_*.png
+node_modules/
+package-lock.json
+
+# Ensure ML models and datasets are ALWAYS tracked
+!model/chatbot_model.pkl
+!model/vectorizer.pkl
+!dataset/intents1.json
