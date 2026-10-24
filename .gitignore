@@ -34,6 +34,7 @@ verify_dribbble_ui.js
 verify_cortex_ui.js
 verify_enhanced_120hz.js
 render_linkedin_post.js
+generate_interview_pdf.js
 screenshots/linkedin_banner_template.html
 capture_dribbble.js
 download_full_shot.js
