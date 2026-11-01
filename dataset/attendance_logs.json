@@ -5,9 +5,23 @@
       "name": "Sairaj Bhandalkar",
       "course": "B.Tech Computer Science",
       "year": "3rd year",
-      "total_sessions": 49,
-      "attended_sessions": 43,
+      "total_sessions": 51,
+      "attended_sessions": 45,
       "logs": [
+        {
+          "date": "2026-11-02",
+          "time": "12:46 AM",
+          "method": "FaceLock AI",
+          "status": "Present",
+          "subject": "Machine Learning & Neural Networks"
+        },
+        {
+          "date": "2026-11-02",
+          "time": "12:45 AM",
+          "method": "Fingerprint Biometric",
+          "status": "Present",
+          "subject": "Cloud Architecture & Distributed Systems"
+        },
         {
           "date": "2026-11-01",
           "time": "11:28 PM",
