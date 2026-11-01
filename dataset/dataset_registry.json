@@ -1,0 +1,614 @@
+{
+  "existing_attendance": {
+    "file": "Attendance_Prediction.csv",
+    "path": "dataset\\existing\\Attendance_Prediction.csv",
+    "total_rows": 20000,
+    "sample_cols": [
+      "student_id",
+      "age",
+      "gender",
+      "course",
+      "year",
+      "parent_education",
+      "internet_access",
+      "hostel_resident",
+      "class_type",
+      "weather",
+      "study_hours",
+      "sleep_hours",
+      "travel_time_minutes",
+      "attendance",
+      "absence_reason"
+    ],
+    "col_count": 15,
+    "missing_cols": {}
+  },
+  "oulad": [
+    {
+      "file": "assessments.csv",
+      "path": "dataset\\academic\\oulad\\assessments.csv",
+      "total_rows": 206,
+      "sample_cols": [
+        "code_module",
+        "code_presentation",
+        "id_assessment",
+        "assessment_type",
+        "date",
+        "weight"
+      ],
+      "col_count": 6,
+      "missing_cols": {}
+    },
+    {
+      "file": "courses.csv",
+      "path": "dataset\\academic\\oulad\\courses.csv",
+      "total_rows": 22,
+      "sample_cols": [
+        "code_module",
+        "code_presentation",
+        "module_presentation_length"
+      ],
+      "col_count": 3,
+      "missing_cols": {}
+    },
+    {
+      "file": "studentAssessment.csv",
+      "path": "dataset\\academic\\oulad\\studentAssessment.csv",
+      "total_rows": 173912,
+      "sample_cols": [
+        "id_assessment",
+        "id_student",
+        "date_submitted",
+        "is_banked",
+        "score"
+      ],
+      "col_count": 5,
+      "missing_cols": {}
+    },
+    {
+      "file": "studentInfo.csv",
+      "path": "dataset\\academic\\oulad\\studentInfo.csv",
+      "total_rows": 32593,
+      "sample_cols": [
+        "code_module",
+        "code_presentation",
+        "id_student",
+        "gender",
+        "region",
+        "highest_education",
+        "imd_band",
+        "age_band",
+        "num_of_prev_attempts",
+        "studied_credits",
+        "disability",
+        "final_result"
+      ],
+      "col_count": 12,
+      "missing_cols": {}
+    },
+    {
+      "file": "studentRegistration.csv",
+      "path": "dataset\\academic\\oulad\\studentRegistration.csv",
+      "total_rows": 32593,
+      "sample_cols": [
+        "code_module",
+        "code_presentation",
+        "id_student",
+        "date_registration",
+        "date_unregistration"
+      ],
+      "col_count": 5,
+      "missing_cols": {}
+    },
+    {
+      "file": "studentVle.csv",
+      "path": "dataset\\academic\\oulad\\studentVle.csv",
+      "total_rows": 10655280,
+      "sample_cols": [
+        "code_module",
+        "code_presentation",
+        "id_student",
+        "id_site",
+        "date",
+        "sum_click"
+      ],
+      "col_count": 6,
+      "missing_cols": {}
+    },
+    {
+      "file": "vle.csv",
+      "path": "dataset\\academic\\oulad\\vle.csv",
+      "total_rows": 6364,
+      "sample_cols": [
+        "id_site",
+        "code_module",
+        "code_presentation",
+        "activity_type",
+        "week_from",
+        "week_to"
+      ],
+      "col_count": 6,
+      "missing_cols": {}
+    }
+  ],
+  "student_performance": [
+    {
+      "file": "Maths.csv",
+      "error": "'utf-8' codec can't decode byte 0xb3 in position 10: invalid start byte"
+    },
+    {
+      "file": "Portuguese.csv",
+      "error": "'utf-8' codec can't decode byte 0xb1 in position 11: invalid start byte"
+    },
+    {
+      "file": "student-mat.csv",
+      "path": "dataset\\academic\\student_performance\\student-mat.csv",
+      "total_rows": 395,
+      "sample_cols": [
+        "school",
+        "sex",
+        "age",
+        "address",
+        "famsize",
+        "Pstatus",
+        "Medu",
+        "Fedu",
+        "Mjob",
+        "Fjob",
+        "reason",
+        "guardian",
+        "traveltime",
+        "studytime",
+        "failures",
+        "schoolsup",
+        "famsup",
+        "paid",
+        "activities",
+        "nursery",
+        "higher",
+        "internet",
+        "romantic",
+        "famrel",
+        "freetime",
+        "goout",
+        "Dalc",
+        "Walc",
+        "health",
+        "absences",
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "col_count": 33,
+      "missing_cols": {}
+    },
+    {
+      "file": "student-por.csv",
+      "path": "dataset\\academic\\student_performance\\student-por.csv",
+      "total_rows": 649,
+      "sample_cols": [
+        "school",
+        "sex",
+        "age",
+        "address",
+        "famsize",
+        "Pstatus",
+        "Medu",
+        "Fedu",
+        "Mjob",
+        "Fjob",
+        "reason",
+        "guardian",
+        "traveltime",
+        "studytime",
+        "failures",
+        "schoolsup",
+        "famsup",
+        "paid",
+        "activities",
+        "nursery",
+        "higher",
+        "internet",
+        "romantic",
+        "famrel",
+        "freetime",
+        "goout",
+        "Dalc",
+        "Walc",
+        "health",
+        "absences",
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "col_count": 33,
+      "missing_cols": {}
+    }
+  ],
+  "school_attendance": [
+    {
+      "file": "2018-2019_Daily_Attendance_20240429.csv",
+      "path": "dataset\\attendance\\2018-2019_Daily_Attendance_20240429.csv",
+      "total_rows": 277153,
+      "sample_cols": [
+        "School DBN",
+        "Date",
+        "Enrolled",
+        "Absent",
+        "Present",
+        "Released"
+      ],
+      "col_count": 6,
+      "missing_cols": {}
+    }
+  ],
+  "clinc150": [
+    {
+      "file": "binary_undersample.json",
+      "path": "dataset\\chatbot\\clinc150\\oos-eval-master\\data\\binary_undersample.json",
+      "splits": [
+        "train",
+        "val",
+        "test"
+      ],
+      "counts": {
+        "train": 1250,
+        "val": 3100,
+        "test": 5500,
+        "oos_test": 0
+      }
+    },
+    {
+      "file": "binary_wiki_aug.json",
+      "path": "dataset\\chatbot\\clinc150\\oos-eval-master\\data\\binary_wiki_aug.json",
+      "splits": [
+        "train",
+        "test",
+        "val"
+      ],
+      "counts": {
+        "train": 30000,
+        "val": 3100,
+        "test": 5500,
+        "oos_test": 0
+      }
+    },
+    {
+      "file": "data_full.json",
+      "path": "dataset\\chatbot\\clinc150\\oos-eval-master\\data\\data_full.json",
+      "splits": [
+        "oos_val",
+        "val",
+        "train",
+        "oos_test",
+        "test",
+        "oos_train"
+      ],
+      "counts": {
+        "train": 15000,
+        "val": 3000,
+        "test": 4500,
+        "oos_test": 1000
+      }
+    },
+    {
+      "file": "data_imbalanced.json",
+      "path": "dataset\\chatbot\\clinc150\\oos-eval-master\\data\\data_imbalanced.json",
+      "splits": [
+        "oos_val",
+        "val",
+        "train",
+        "oos_test",
+        "test",
+        "oos_train"
+      ],
+      "counts": {
+        "train": 10525,
+        "val": 3000,
+        "test": 4500,
+        "oos_test": 1000
+      }
+    },
+    {
+      "file": "data_oos_plus.json",
+      "path": "dataset\\chatbot\\clinc150\\oos-eval-master\\data\\data_oos_plus.json",
+      "splits": [
+        "oos_val",
+        "val",
+        "train",
+        "oos_test",
+        "test",
+        "oos_train"
+      ],
+      "counts": {
+        "train": 15000,
+        "val": 3000,
+        "test": 4500,
+        "oos_test": 1000
+      }
+    },
+    {
+      "file": "data_small.json",
+      "path": "dataset\\chatbot\\clinc150\\oos-eval-master\\data\\data_small.json",
+      "splits": [
+        "oos_val",
+        "val",
+        "train",
+        "oos_test",
+        "test",
+        "oos_train"
+      ],
+      "counts": {
+        "train": 7500,
+        "val": 3000,
+        "test": 4500,
+        "oos_test": 1000
+      }
+    },
+    {
+      "file": "domains.json",
+      "path": "dataset\\chatbot\\clinc150\\oos-eval-master\\data\\domains.json",
+      "splits": [
+        "banking",
+        "credit_cards",
+        "kitchen_and_dining",
+        "home",
+        "auto_and_commute",
+        "travel",
+        "utility",
+        "work",
+        "small_talk",
+        "meta"
+      ],
+      "counts": {
+        "train": 0,
+        "val": 0,
+        "test": 0,
+        "oos_test": 0
+      }
+    }
+  ],
+  "onet": [
+    {
+      "file": "career_interest_types.csv",
+      "path": "dataset\\career\\onet\\career_interest_types.csv",
+      "total_rows": 8307,
+      "sample_cols": [
+        "O*NET-SOC Code",
+        "Title",
+        "Element ID",
+        "Element Name",
+        "Scale ID",
+        "Scale Name",
+        "Data Value",
+        "Date",
+        "Domain Source"
+      ],
+      "col_count": 9,
+      "missing_cols": {}
+    },
+    {
+      "file": "career_interest_type_keywords.csv",
+      "path": "dataset\\career\\onet\\career_interest_type_keywords.csv",
+      "total_rows": 75,
+      "sample_cols": [
+        "Element ID",
+        "Element Name",
+        "Keyword",
+        "Keyword Type"
+      ],
+      "col_count": 4,
+      "missing_cols": {}
+    },
+    {
+      "file": "essential_skills.csv",
+      "path": "dataset\\career\\onet\\essential_skills.csv",
+      "total_rows": 18200,
+      "sample_cols": [
+        "O*NET-SOC Code",
+        "Title",
+        "Element ID",
+        "Element Name",
+        "Scale ID",
+        "Scale Name",
+        "Data Value",
+        "N",
+        "Standard Error",
+        "Lower CI Bound",
+        "Upper CI Bound",
+        "Recommend Suppress",
+        "Not Relevant",
+        "Date",
+        "Domain Source"
+      ],
+      "col_count": 15,
+      "missing_cols": {
+        "Not Relevant": 500
+      }
+    },
+    {
+      "file": "interests_illustrative_activities.csv",
+      "path": "dataset\\career\\onet\\interests_illustrative_activities.csv",
+      "total_rows": 188,
+      "sample_cols": [
+        "Element ID",
+        "Element Name",
+        "Interest Type",
+        "Activity"
+      ],
+      "col_count": 4,
+      "missing_cols": {}
+    },
+    {
+      "file": "interests_illustrative_occupations.csv",
+      "path": "dataset\\career\\onet\\interests_illustrative_occupations.csv",
+      "total_rows": 186,
+      "sample_cols": [
+        "Element ID",
+        "Element Name",
+        "Interest Type",
+        "O*NET-SOC Code",
+        "Title"
+      ],
+      "col_count": 5,
+      "missing_cols": {}
+    },
+    {
+      "file": "knowledge.csv",
+      "path": "dataset\\career\\onet\\knowledge.csv",
+      "total_rows": 60060,
+      "sample_cols": [
+        "O*NET-SOC Code",
+        "Title",
+        "Element ID",
+        "Element Name",
+        "Scale ID",
+        "Scale Name",
+        "Data Value",
+        "N",
+        "Standard Error",
+        "Lower CI Bound",
+        "Upper CI Bound",
+        "Recommend Suppress",
+        "Not Relevant",
+        "Date",
+        "Domain Source"
+      ],
+      "col_count": 15,
+      "missing_cols": {
+        "Standard Error": 330,
+        "Lower CI Bound": 340,
+        "Upper CI Bound": 340,
+        "Recommend Suppress": 330,
+        "Not Relevant": 500
+      }
+    },
+    {
+      "file": "software_skills.csv",
+      "path": "dataset\\career\\onet\\software_skills.csv",
+      "total_rows": 31821,
+      "sample_cols": [
+        "O*NET-SOC Code",
+        "Title",
+        "Workplace Example",
+        "Element ID",
+        "Element Name",
+        "Hot Technology",
+        "In Demand"
+      ],
+      "col_count": 7,
+      "missing_cols": {}
+    },
+    {
+      "file": "specific_interest_areas.csv",
+      "path": "dataset\\career\\onet\\specific_interest_areas.csv",
+      "total_rows": 73062,
+      "sample_cols": [
+        "O*NET-SOC Code",
+        "Title",
+        "Element ID",
+        "Element Name",
+        "Scale ID",
+        "Scale Name",
+        "Data Value",
+        "Date",
+        "Domain Source"
+      ],
+      "col_count": 9,
+      "missing_cols": {}
+    },
+    {
+      "file": "specific_interest_areas_to_career_interest_types.csv",
+      "path": "dataset\\career\\onet\\specific_interest_areas_to_career_interest_types.csv",
+      "total_rows": 53,
+      "sample_cols": [
+        "Specific Interest Areas Element ID",
+        "Specific Interest Areas Element Name",
+        "Career Interest Types Element ID",
+        "Career Interest Types Element Name"
+      ],
+      "col_count": 4,
+      "missing_cols": {}
+    },
+    {
+      "file": "transferable_skills.csv",
+      "path": "dataset\\career\\onet\\transferable_skills.csv",
+      "total_rows": 45500,
+      "sample_cols": [
+        "O*NET-SOC Code",
+        "Title",
+        "Element ID",
+        "Element Name",
+        "Scale ID",
+        "Scale Name",
+        "Data Value",
+        "N",
+        "Standard Error",
+        "Lower CI Bound",
+        "Upper CI Bound",
+        "Recommend Suppress",
+        "Not Relevant",
+        "Date",
+        "Domain Source"
+      ],
+      "col_count": 15,
+      "missing_cols": {
+        "Not Relevant": 500
+      }
+    }
+  ],
+  "job_postings": [
+    {
+      "file": "data job posts.csv",
+      "path": "dataset\\career\\job_postings\\data job posts.csv",
+      "total_rows": 1684180,
+      "sample_cols": [
+        "jobpost",
+        "date",
+        "Title",
+        "Company",
+        "AnnouncementCode",
+        "Term",
+        "Eligibility",
+        "Audience",
+        "StartDate",
+        "Duration",
+        "Location",
+        "JobDescription",
+        "JobRequirment",
+        "RequiredQual",
+        "Salary",
+        "ApplicationP",
+        "OpeningDate",
+        "Deadline",
+        "Notes",
+        "AboutC",
+        "Attach",
+        "Year",
+        "Month",
+        "IT"
+      ],
+      "col_count": 24,
+      "missing_cols": {
+        "Title": 1,
+        "AnnouncementCode": 889,
+        "Term": 785,
+        "Eligibility": 791,
+        "Audience": 953,
+        "StartDate": 608,
+        "Duration": 697,
+        "Location": 24,
+        "JobDescription": 177,
+        "JobRequirment": 335,
+        "RequiredQual": 63,
+        "Salary": 670,
+        "ApplicationP": 15,
+        "OpeningDate": 565,
+        "Deadline": 25,
+        "Notes": 872,
+        "AboutC": 544,
+        "Attach": 971
+      }
+    }
+  ]
+}

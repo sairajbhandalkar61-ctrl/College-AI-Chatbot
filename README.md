@@ -1,220 +1,174 @@
-# College AI Chatbot • Intelligent Campus Assistant & Biometric System
+# CORTEX 2.0 • Intelligent AI Campus & Student Success Ecosystem
 
 [![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11-3776AB?logo=python&logoColor=white)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-3.1.3-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.1.6-D71F00?logo=sqlalchemy&logoColor=white)](https://www.sqlalchemy.org/)
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.2.1-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
-[![Gunicorn](https://img.shields.io/badge/Gunicorn-21.2.0-499848?logo=gunicorn&logoColor=white)](https://gunicorn.org)
-[![120Hz Cortex UI](https://img.shields.io/badge/Cortex%20UI-120Hz%20Fluid-7C3AED)](templates/index.html)
-[![WebAuthn & WebRTC](https://img.shields.io/badge/Biometrics-FaceLock%20%2B%20Fingerprint-06B6D4)](#-biometric-attendance-system)
+[![Tests Passing](https://img.shields.io/badge/Pytest-22%2F22%20Passing-10B981?logo=pytest&logoColor=white)](#-automated-testing-suite)
+[![Cortex 2.0 UI](https://img.shields.io/badge/UI%2FUX-Linear%20%7C%20Vercel%20Inspired-7C3AED)](templates/cortex2.html)
+[![WebAuthn & WebRTC](https://img.shields.io/badge/Biometrics-FaceLock%20%2B%20Fingerprint-06B6D4)](#-multimodal-biometrics)
 
-A full-stack, enterprise-grade AI campus assistant and intelligent biometric portal. Powered by a **Scikit-Learn NLP Intent Classification Engine (78 Campus Intents)**, a **Machine Learning Attendance Risk Predictor (trained on 20,000 student records)**, and a **120Hz Cortex UI Design System** equipped with real-time **FaceLock AI** (WebRTC computer vision) and **Hardware Fingerprint Authentication** (W3C WebAuthn).
-
----
-
-## 🚀 Live Demo & Repository
-
-- 🌐 **Permanent 24/7 Live Web App**: **[https://sairajbhandalkar61-ctrl.github.io/College-AI-Chatbot/](https://sairajbhandalkar61-ctrl.github.io/College-AI-Chatbot/)**
-- 💻 **GitHub Repository**: [https://github.com/sairajbhandalkar61-ctrl/College-AI-Chatbot](https://github.com/sairajbhandalkar61-ctrl/College-AI-Chatbot)
-- ☁️ **1-Click Cloud Deploy (Render)**:
-
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/sairajbhandalkar61-ctrl/College-AI-Chatbot)
+**CORTEX 2.0** is an enterprise-grade, full-stack campus intelligence ecosystem. It integrates **Hybrid NLP Intent Classification (78 Intents)**, **CLINC150 Out-of-Scope Boundary Detection**, **Grounded RAG Knowledge Retrieval**, **Multimodal Biometric Attendance (FaceLock AI + WebAuthn)**, and an **AI Student Success Advisor (Descriptive, Predictive, and Prescriptive Analytics)** trained on real-world educational benchmarks (UCI Student Performance, OULAD, and O*NET).
 
 ---
 
-## 🌟 Key Features
-
-### 1. 🤖 Intelligent Campus AI Assistant
-- **78 Trained Campus Intents**: Accurately classifies student queries across admissions, eligibility, engineering branches, fees, scholarship schemes, hostel facilities, examination timetables, placement statistics, and training programs.
-- **Scikit-Learn TF-IDF + Classifier**: Sub-15ms response latency with confidence scoring and randomized conversational responses.
-- **Voice Intelligence**:
-  - **Speech-to-Text (STT)**: Real-time dictation via the browser Web Speech API.
-  - **Text-to-Speech (TTS)**: Natural voice readouts for bot responses with instant playback toggle.
-
-### 2. 👁️ Biometric FaceLock Attendance
-- **Live WebRTC Camera Stream**: Ultra-responsive camera feed (`facingMode: 'user'`) rendered with an interactive biometric HUD.
-- **Futuristic Scanner HUD**: Precision reticle brackets, target crosshairs, and a sweeping 120Hz laser beam animation.
-- **Instant Snapshot Verification**: Captures canvas-based facial signatures and transmits verified timestamps to the `/api/attendance/verify-face` backend.
-
-### 3. 👆 Hardware Fingerprint & WebAuthn Sensor
-- **W3C WebAuthn API Integration**: Connects with native device biometric authenticators (**Windows Hello, macOS Touch ID, Android / iOS Fingerprint**).
-- **Haptic & Visual Feedback**: Multi-ring ripple pulse animation with high-fidelity SVG fingerprint ridges and sound/vibration haptics.
-- **Secure Transaction Logging**: Emits tamper-resistant student verification tokens to `/api/attendance/verify-fingerprint`.
-
-### 4. 📊 Machine Learning Attendance Predictor
-- **Trained on 20,000 Student Records** (`dataset/Attendance_Prediction.csv`):
-  - Uses `RandomForestClassifier` and multi-feature `DictVectorizer` to forecast attendance probability and root-cause absence factors (`Health Issue`, `Travel Delay`, `Academic Burnout`, `Part-Time Work`).
-  - Interactive student habit sliders for **Study Hours**, **Sleep Hours**, and **Travel Commute**.
-  - Visual color-coded risk meter (**Safe >75%**, **Moderate Risk 65-75%**, **High Debarment Risk <65%**).
-
-### 5. 🎨 120Hz Cortex UI Design System
-- Minimalist, high-framerate design system inspired by modern AI labs (Soliar / SOLAR Digital).
-- Animated 3D liquid violet centerpiece orb with specular reflections and fluid physics.
-- Ambient 120Hz particle canvas with floating radial pastel orbs.
-- Fully responsive across desktop, tablet, and mobile viewports (`100dvh`).
-
----
-
-## 🏗️ System Architecture
+## 🌟 Architecture & System Topology
 
 ```mermaid
-flowchart TD
-    subgraph Frontend["120Hz Cortex Frontend Engine"]
-        User["Student / Recruiter"]
-        Chat["Chatbox Dock (Text / Voice)"]
-        FaceLock["FaceLock HUD (WebRTC Camera)"]
-        Fingerprint["Fingerprint (WebAuthn / Touch Sensor)"]
-        Predictor["ML Risk Sliders (Study / Sleep / Travel)"]
+graph TD
+    User([Student / Faculty / Admin]) -->|HTTPS / WebRTC / WebAuthn| AppGateway[Flask WSGI Application Factory]
+    
+    subgraph UI_Tier [Modern SaaS Presentation Tier]
+        Cortex2UI[Linear / Vercel Modern Dashboard - templates/cortex2.html]
+        Legacy120Hz[120Hz Ambient Chatbot - templates/index.html]
+        FaceLockHUD[WebRTC FaceLock Video Reticle]
+        FIDO2Sensor[WebAuthn Fingerprint Hardware Sensor]
     end
 
-    subgraph Backend["Flask WSGI Application Engine (app.py)"]
-        Router{"Flask API Gateway"}
-        ChatModel["Chatbot Intent Engine (Scikit-Learn TF-IDF)"]
-        FaceAuth["Facial Verification Engine"]
-        FpAuth["WebAuthn Biometric Verifier"]
-        AttModel["Attendance ML Predictor (Random Forest 20k Records)"]
-        LogsDB[("Attendance Ledger (attendance_logs.json)")]
+    AppGateway --> UI_Tier
+
+    subgraph Service_Mesh [Core Intelligence Services]
+        ChatbotService[Hybrid Chatbot & OOS Boundary Service]
+        RAGService[TF-IDF Vector Knowledge Retrieval]
+        SuccessAdvisor[Descriptive, Predictive & Prescriptive Advisor]
+        CareerService[O*NET Software Competency Matcher]
     end
 
-    User --> Chat & FaceLock & Fingerprint & Predictor
-    Chat -->|/chat| Router
-    FaceLock -->|/api/attendance/verify-face| Router
-    Fingerprint -->|/api/attendance/verify-fingerprint| Router
-    Predictor -->|/api/attendance/predict| Router
+    AppGateway --> Service_Mesh
 
-    Router --> ChatModel & FaceAuth & FpAuth & AttModel
-    FaceAuth & FpAuth -->|Log Verified Session| LogsDB
-    Router -->|/api/attendance/status/<id>| LogsDB
+    subgraph Model_Registry [Machine Learning Models]
+        M1[Chatbot Intent Engine: 78 Classes]
+        M2[CLINC150 OOS Boundary Guard: 96.5% Acc]
+        M3[Attendance Risk Predictor: 20k Records]
+        M4[UCI Grade Regressor: MAE 0.91, R2 0.841]
+        M5[OULAD Outcome Classifier: 75.9% Acc]
+    end
+
+    Service_Mesh --> Model_Registry
+
+    subgraph Database_Tier [Relational Data Layer]
+        RelationalDB[(cortex2.db SQLite / PostgreSQL)]
+        JSONLogs[(Attendance Audit Trail)]
+        Docs[(Institutional Handbooks & Policies)]
+    end
+
+    Service_Mesh --> Database_Tier
 ```
 
 ---
 
-## 📁 Repository Structure
+## 🚀 Key Modules & Capabilities
 
-```text
-College-AI-Chatbot/
-├── app.py                             # Flask application & biometric REST API
-├── requirements.txt                   # Production dependencies (Flask, Scikit-Learn, Gunicorn)
-├── render.yaml                        # 1-Click Render Cloud deployment blueprint
-├── Procfile                           # Production WSGI entry point
-├── .gitignore                         # Git repository rules
-├── README.md                          # Full documentation & guide
-│
-├── dataset/
-│   ├── intents1.json                  # 78 campus intent domains & dialogue responses
-│   ├── Attendance_Prediction.csv      # 20,000 real-world student attendance training records
-│   └── attendance_logs.json           # Live student attendance ledger & history
-│
-├── model/
-│   ├── chatbot_model.pkl              # Serialized Scikit-Learn intent classification model
-│   ├── vectorizer.pkl                 # Fitted TF-IDF feature extraction vectorizer
-│   ├── attendance_model.pkl           # Trained Random Forest Attendance Risk model
-│   └── attendance_encoder.pkl         # DictVectorizer feature encoder for student habits
-│
-├── templates/
-│   └── index.html                     # Cortex 120Hz interface & Biometric Modal HUD
-│
-├── static/
-│   ├── styles.css                     # 120Hz fluid CSS styles, laser beam, glassmorphism
-│   └── app.js                         # WebRTC, WebAuthn, ML predictor, and chat controller
-│
-└── screenshots/
-    ├── linkedin_post_showcase.png     # Official high-resolution portfolio banner
-    ├── enhanced_120hz_desktop.png     # Desktop landing view
-    ├── enhanced_active_conversation.png # Real-time conversation & biometric action cards
-    ├── enhanced_mobile_landing.png    # Mobile responsive view
-    └── enhanced_mobile_drawer.png     # Mobile navigation drawer
-```
+### 1. 🤖 AI Campus Chatbot with Guardrails & RAG
+- **78 Trained Campus Intents**: Immediate responses for admissions, exam fees, hostel facilities, branch eligibility, and library hours.
+- **CLINC150 Out-of-Scope (OOS) Boundary Guard**: Accurately detects and deflects queries outside institutional boundaries (banking, travel, general knowledge) to maintain academic focus.
+- **Grounded Campus RAG**: Matches student inquiries against institutional handbooks with source attribution.
+- **Database-Integrated Dialogue**: Directly answers queries like *"What is my attendance?"*, *"When is my next exam?"*, and *"What assignments are pending?"*.
+- **Speech STT & TTS**: Web Speech API for voice dictation and natural audio response synthesis.
+
+### 2. 👁️ Multimodal Biometric Attendance
+- **FaceLock AI**: Client-side WebRTC camera frame stream with animated laser scanning reticle. Emits verifiable attendance tokens.
+- **Hardware WebAuthn Fingerprint**: Direct integration with `window.PublicKeyCredential` (Windows Hello, macOS Touch ID, Android/iOS fingerprint sensors).
+- **ML Habit Risk Predictor**: Evaluates study hours, sleep hours, and commute time using a 20,000-record RandomForest model to predict attendance probability.
+
+### 3. 🎓 AI Student Success Advisor
+- **Descriptive Analytics**: Real-time evaluation of attendance compliance, internal assessment scores, and composite Learning Engagement Scores ($E$).
+- **Predictive Analytics**:
+  - **UCI Performance Model**: Predicts final course grade ($G_3$) with a **Mean Absolute Error of 0.91** points on a 0–20 scale.
+  - **OULAD Completion Model**: Predicts course pass/completion likelihood based on LMS activity clicks and assessment milestones.
+- **Prescriptive Analytics & "Next Best Action"**: Identifies the single most critical learning objective the student should tackle today and provides an interactive weekly study plan checklist.
+
+### 4. 💼 Career & Resume Guidance
+- **O*NET Software Skills Taxonomy**: Maps student competencies against official labor market occupational profiles.
+- **AI Resume Parser**: Extracts skills from text or uploaded documents and provides match percentages for target roles (AI Engineer, Data Scientist, Full-Stack Developer).
+
+### 5. 🏛️ Complete Campus Operations
+- **Timetable & Examinations**: Weekly lecture schedule grid and upcoming exam dates.
+- **Assignments & Coursework**: Assignment tracking with online submission portal.
+- **Campus Bulletins & Notices**: Official announcements with instant AI summarization.
+- **Confidential Grievance Desk**: Issue submission with automatic categorization and ticket tracking (`GRV-2026-XXXX`).
 
 ---
 
-## 🔌 API Documentation
+## 🧪 Automated Testing Suite
 
-### 1. Natural Language Chat
-- **Route**: `POST /chat`
-- **Payload**: `{"message": "Mark my attendance"}`
-- **Action Triggers**: Automatically sends `action: "open_biometrics"`, `action: "show_status"`, or `action: "open_predictor"`.
+The entire system is thoroughly validated through an automated pytest suite covering all 15 blueprints, machine learning pipelines, and database operations.
 
-### 2. Verify FaceLock
-- **Route**: `POST /api/attendance/verify-face`
-- **Payload**: `{"student_id": "SB2026", "image": "data:image/jpeg;base64,..."}`
-- **Response**: `{"success": true, "token": "...", "confidence": 0.98}`
-
-### 3. Verify Fingerprint
-- **Route**: `POST /api/attendance/verify-fingerprint`
-- **Payload**: `{"student_id": "SB2026", "auth_type": "webauthn"}`
-- **Response**: `{"success": true, "token": "...", "device": "Hardware Biometric Sensor"}`
-
-### 4. Mark Attendance
-- **Route**: `POST /api/attendance/mark`
-- **Payload**: `{"student_id": "SB2026", "method": "FaceLock AI", "subject": "Advanced AI & ML"}`
-- **Response**: Returns updated attendance percentage and logs verified entry into `attendance_logs.json`.
-
-### 5. Predict Attendance Risk
-- **Route**: `POST /api/attendance/predict`
-- **Payload**: `{"study_hours": 4.5, "sleep_hours": 7.0, "travel_time": 25, "course": "Computer Science", "year": "3rd year"}`
-- **Response**:
-```json
-{
-  "attendance_probability": 84.5,
-  "predicted_status": "Present",
-  "predicted_absence_factor": "none",
-  "risk_level": "Safe (>75%)",
-  "risk_color": "#10B981",
-  "recommendation": "Great study-life balance! You are comfortably above the 75% debarment threshold."
-}
-```
-
-### 6. Student Attendance Status
-- **Route**: `GET /api/attendance/status/<student_id>`
-- **Response**: Real-time attended sessions, total sessions, compliant status, and verification history.
-
----
-
-## 💻 Local Quickstart
-
-### 1. Clone & Set Up Virtual Environment
 ```bash
+# Run the complete test suite
+.\venv\Scripts\pytest.exe -v tests/
+```
+
+**Results:**
+```text
+tests/test_cortex2.py::test_health_check PASSED                          [  4%]
+tests/test_cortex2.py::test_home_page_renders_cortex2 PASSED             [  9%]
+tests/test_cortex2.py::test_legacy_chatbot_route PASSED                  [ 13%]
+tests/test_cortex2.py::test_auth_login_student PASSED                    [ 18%]
+tests/test_cortex2.py::test_auth_login_invalid PASSED                    [ 22%]
+tests/test_cortex2.py::test_chatbot_campus_intent PASSED                 [ 27%]
+tests/test_cortex2.py::test_chatbot_personalized_attendance_query PASSED [ 31%]
+tests/test_cortex2.py::test_chatbot_personalized_assignments_query PASSED [ 36%]
+tests/test_cortex2.py::test_attendance_status PASSED                     [ 40%]
+tests/test_cortex2.py::test_attendance_mark_face PASSED                  [ 45%]
+tests/test_cortex2.py::test_attendance_predict_ml PASSED                 [ 50%]
+tests/test_cortex2.py::test_success_advisor_dashboard PASSED             [ 54%]
+tests/test_cortex2.py::test_study_plan_task_update PASSED                [ 59%]
+tests/test_cortex2.py::test_uci_grade_prediction PASSED                  [ 63%]
+tests/test_cortex2.py::test_oulad_outcome_prediction PASSED              [ 68%]
+tests/test_cortex2.py::test_career_resume_analysis PASSED                [ 72%]
+tests/test_cortex2.py::test_timetable_and_exams PASSED                   [ 77%]
+tests/test_cortex2.py::test_assignments_list_and_submission PASSED       [ 81%]
+tests/test_cortex2.py::test_notices_and_summarize PASSED                 [ 86%]
+tests/test_cortex2.py::test_grievances_flow PASSED                       [ 90%]
+tests/test_cortex2.py::test_faculty_dashboard PASSED                     [ 95%]
+tests/test_cortex2.py::test_admin_overview_and_system PASSED             [100%]
+
+======================= 22 passed in 5.94s =======================
+```
+
+---
+
+## 🛠️ Quickstart & Local Installation
+
+### Prerequisites
+- Python 3.10 or 3.11
+- Virtual environment recommended
+
+### Installation Steps
+```bash
+# 1. Clone the repository
 git clone https://github.com/sairajbhandalkar61-ctrl/College-AI-Chatbot.git
 cd College-AI-Chatbot
 
-# Windows (PowerShell)
+# 2. Create and activate virtual environment
 python -m venv venv
-.\venv\Scripts\Activate.ps1
+.\venv\Scripts\activate   # Windows
+source venv/bin/activate  # macOS / Linux
 
-# macOS / Linux
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### 2. Install Dependencies
-```bash
+# 3. Install dependencies
 pip install -r requirements.txt
-```
 
-### 3. Launch Development Server
-```bash
+# 4. Seed the database with campus records
+python scripts/seed_database.py
+
+# 5. Launch CORTEX 2.0
 python app.py
 ```
-Open **`http://127.0.0.1:5000`** in your browser.
+Open **`http://127.0.0.1:5000`** in your browser to access the CORTEX 2.0 ecosystem, or visit **`http://127.0.0.1:5000/chatbot`** for the 120Hz chatbot interface.
 
 ---
 
-## ☁️ Deployment
+## 📚 Technical Documentation Directory
 
-### 1-Click Cloud Deployment (Render)
-1. Fork or push this repository to your GitHub.
-2. In [Render Dashboard](https://dashboard.render.com), click **New** &rarr; **Blueprint** (or **Web Service**).
-3. Select your `College-AI-Chatbot` repository.
-4. Render detects `render.yaml` automatically:
-   - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `gunicorn app:app`
-5. Click **Deploy**. Your permanent HTTPS live URL will be active 24/7!
+- **[System Architecture](docs/ARCHITECTURE.md)**: Blueprint registry, service mesh, and database schema.
+- **[Dataset Documentation](docs/DATASET_DOCUMENTATION.md)**: Dataset provenance, schema definitions, and ethical handling.
+- **[Model Documentation](docs/MODEL_DOCUMENTATION.md)**: Training hyperparameters, validation metrics, and inference architectures.
+- **[API Reference](docs/API_DOCUMENTATION.md)**: Complete REST API catalog for all 15 endpoints.
+- **[Student Success Advisor](docs/STUDENT_SUCCESS_ADVISOR.md)**: Theoretical formulation of Descriptive, Predictive, and Prescriptive learning analytics.
+- **[Existing Project Analysis](docs/EXISTING_PROJECT_ANALYSIS.md)**: Initial codebase audit, identified bottlenecks, and migration strategy.
 
 ---
 
-## 👨‍💻 Author
-
-**Sairaj Bhandalkar**  
-- **GitHub**: [@sairajbhandalkar61-ctrl](https://github.com/sairajbhandalkar61-ctrl)  
-- **LinkedIn**: [sairaj-bhandalkar](https://www.linkedin.com/in/sairaj-bhandalkar-a572a3378/)  
-- **Education**: MCA (Data Science) @ MIT ADT University  
+## 📄 License
+This project is licensed under the MIT License. Academic and public research datasets retain their respective individual licenses and attributions.

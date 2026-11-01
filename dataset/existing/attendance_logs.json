@@ -1,0 +1,56 @@
+{
+  "students": {
+    "SB2026": {
+      "student_id": "SB2026",
+      "name": "Sairaj Bhandalkar",
+      "course": "B.Tech Computer Science",
+      "year": "3rd year",
+      "total_sessions": 51,
+      "attended_sessions": 45,
+      "logs": [
+        {
+          "date": "2026-11-02",
+          "time": "12:46 AM",
+          "method": "FaceLock AI",
+          "status": "Present",
+          "subject": "Machine Learning & Neural Networks"
+        },
+        {
+          "date": "2026-11-02",
+          "time": "12:45 AM",
+          "method": "Fingerprint Biometric",
+          "status": "Present",
+          "subject": "Cloud Architecture & Distributed Systems"
+        },
+        {
+          "date": "2026-11-01",
+          "time": "11:28 PM",
+          "method": "FaceLock AI",
+          "status": "Present",
+          "subject": "Advanced AI & Machine Learning"
+        },
+        {
+          "date": "2026-10-30",
+          "time": "09:02 AM",
+          "method": "FaceLock AI",
+          "status": "Present",
+          "subject": "Distributed Systems"
+        },
+        {
+          "date": "2026-10-31",
+          "time": "08:58 AM",
+          "method": "Fingerprint",
+          "status": "Present",
+          "subject": "Machine Learning Lab"
+        },
+        {
+          "date": "2026-11-01",
+          "time": "09:05 AM",
+          "method": "FaceLock AI",
+          "status": "Present",
+          "subject": "Cloud Computing"
+        }
+      ]
+    }
+  }
+}

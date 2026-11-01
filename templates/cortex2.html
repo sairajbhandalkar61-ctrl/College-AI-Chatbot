@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CORTEX 2.0 • Intelligent AI Campus & Student Success Ecosystem</title>
+
+    <!-- Open Graph / LinkedIn Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CORTEX 2.0 — Intelligent Campus & Student Success Ecosystem">
+    <meta property="og:description" content="AI-powered campus management platform with predictive learning analytics, biometric attendance, RAG knowledge assistant, and O*NET career matching.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/sairajbhandalkar61-ctrl/College-AI-Chatbot/main/screenshots/linkedin_post_showcase.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='cortex2.css') }}">
+</head>
+<body class="cortex-app">
+
+    <!-- App Shell Container -->
+    <div class="cortex-container">
+
+        <!-- 1. LEFT SIDEBAR (Dark Navy / Modern SaaS) -->
+        <aside class="cortex-sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <div class="brand-info">
+                    <span class="brand-name">CORTEX 2.0</span>
+                    <span class="brand-tag">CAMPUS ECOSYSTEM</span>
+                </div>
+                <button class="mobile-toggle-btn" id="mobileSidebarClose" aria-label="Close sidebar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- User Profile Summary Card -->
+            <div class="sidebar-user" id="currentUserCard">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Avatar" class="user-avatar" id="userAvatar">
+                <div class="user-meta">
+                    <div class="user-name" id="userName">Sairaj Bhandalkar</div>
+                    <div class="user-sub" id="userSub">SB2026 • MCA Data Science</div>
+                </div>
+                <span class="role-badge" id="roleBadge">Student</span>
+            </div>
+
+            <!-- Navigation Sections -->
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">CORE PLATFORM</div>
+                <a href="#overview" class="nav-item active" data-tab="overview">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="#assistant" class="nav-item" data-tab="assistant">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>AI Assistant</span>
+                    <span class="nav-badge-ai">RAG</span>
+                </a>
+                <a href="#advisor" class="nav-item" data-tab="advisor">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>Success Advisor</span>
+                    <span class="nav-badge-risk">AI Risk</span>
+                </a>
+                <a href="#attendance" class="nav-item" data-tab="attendance">
+                    <i class="fa-solid fa-fingerprint"></i>
+                    <span>Biometric Attendance</span>
+                </a>
+
+                <div class="nav-section-title">ACADEMICS & CAREER</div>
+                <a href="#academics" class="nav-item" data-tab="academics">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Academic Analytics</span>
+                </a>
+                <a href="#career" class="nav-item" data-tab="career">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span>Career & Resume</span>
+                    <span class="nav-badge-pill">O*NET</span>
+                </a>
+                <a href="#timetable" class="nav-item" data-tab="timetable">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <span>Timetable & Exams</span>
+                </a>
+                <a href="#assignments" class="nav-item" data-tab="assignments">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Assignments</span>
+                    <span class="nav-counter" id="assignmentCounter">3</span>
+                </a>
+
+                <div class="nav-section-title">COMMUNICATION</div>
+                <a href="#notices" class="nav-item" data-tab="notices">
+                    <i class="fa-regular fa-bell"></i>
+                    <span>Campus Notices</span>
+                </a>
+                <a href="#grievances" class="nav-item" data-tab="grievances">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Grievance Desk</span>
+                </a>
+
+                <div class="nav-section-title">MODES</div>
+                <a href="/chatbot" class="nav-item mode-link">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>120Hz Chatbot View</span>
+                </a>
+            </nav>
+
+            <!-- Sidebar Footer -->
+            <div class="sidebar-footer">
+                <div class="system-status-indicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">All AI Models Online</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 2. MAIN VIEWPORT AREA -->
+        <main class="cortex-main">
+
+            <!-- Top Header Bar -->
+            <header class="cortex-topbar">
+                <div class="topbar-left">
+                    <button class="mobile-toggle-btn" id="mobileSidebarOpen" aria-label="Open sidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="page-title-box">
+                        <h1 class="page-title" id="pageTitle">Campus Overview</h1>
+                        <p class="page-subtitle" id="pageSubtitle">Real-time student intelligence & predictive academic metrics</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <!-- Role Switcher -->
+                    <div class="role-selector-wrap">
+                        <label for="roleSelector" class="visually-hidden">Switch User Role</label>
+                        <select id="roleSelector" class="role-dropdown">
+                            <option value="student">Student: Sairaj Bhandalkar (SB2026)</option>
+                            <option value="faculty">Faculty: Dr. Rajesh Sharma (FAC101)</option>
+                            <option value="admin">Administrator: Campus Office</option>
+                        </select>
+                    </div>
+
+                    <!-- Theme Switcher -->
+                    <button class="icon-action-btn" id="themeToggleBtn" title="Toggle Light/Dark Theme">
+                        <i class="fa-solid fa-moon" id="themeIcon"></i>
+                    </button>
+
+                    <!-- Notifications Dropdown -->
+                    <div class="notifications-wrapper">
+                        <button class="icon-action-btn" id="notificationBtn" title="Notifications">
+                            <i class="fa-regular fa-bell"></i>
+                            <span class="notification-badge" id="notifBadge">2</span>
+                        </button>
+                        <div class="notifications-panel" id="notificationsPanel">
+                            <div class="panel-header">
+                                <span>Notifications</span>
+                                <button class="mark-read-btn" id="markAllReadBtn">Mark all as read</button>
+                            </div>
+                            <div class="notification-list" id="notificationList">
+                                <div class="notif-item unread">
+                                    <i class="fa-solid fa-circle-exclamation text-warning"></i>
+                                    <div>
+                                        <strong>Attendance Warning Risk</strong>
+                                        <p>Your current attendance is 86.4%. Maintain above 75% to stay compliant.</p>
+                                        <small>1 hour ago</small>
+                                    </div>
+                                </div>
+                                <div class="notif-item unread">
+                                    <i class="fa-solid fa-calendar-check text-success"></i>
+                                    <div>
+                                        <strong>Midterm Timetable Published</strong>
+                                        <p>Check the timetable module for exam schedule starting next week.</p>
+                                        <small>3 hours ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dynamic View Container -->
+            <div class="cortex-content" id="cortexContent">
+
+                <!-- TAB 1: OVERVIEW -->
+                <section class="tab-pane active" id="tab-overview">
+                    <!-- Welcome Hero Banner -->
+                    <div class="welcome-banner">
+                        <div class="banner-text">
+                            <h2>Welcome back, <span id="heroUserName">Sairaj</span>! 👋</h2>
+                            <p>Here is your intelligent academic forecast for today. 1 assignment is due this Friday, and your next class begins in 45 minutes.</p>
+                        </div>
+                        <div class="banner-actions">
+                            <button class="primary-btn" onclick="switchTab('assistant')">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Ask AI Assistant
+                            </button>
+                            <button class="glass-btn" onclick="switchTab('attendance')">
+                                <i class="fa-solid fa-fingerprint"></i> Mark Attendance
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Metrics Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon purple"><i class="fa-solid fa-fingerprint"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-label">Attendance Rate</span>
+                                <span class="stat-value" id="overviewAttendance">86.4%</span>
+                                <span class="stat-trend positive"><i class="fa-solid fa-arrow-trend-up"></i> Above Threshold (75%)</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon blue"><i class="fa-solid fa-award"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-label">Cumulative CGPA</span>
+                                <span class="stat-value" id="overviewCgpa">8.45</span>
+                                <span class="stat-trend neutral"><i class="fa-solid fa-minus"></i> Top 15% of Batch</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orange"><i class="fa-solid fa-list-check"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-label">Active Assignments</span>
+                                <span class="stat-value" id="overviewAssignments">3</span>
+                                <span class="stat-trend warning"><i class="fa-solid fa-clock"></i> 1 Due within 48h</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green"><i class="fa-solid fa-shield-heart"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-label">Academic Risk Status</span>
+                                <span class="stat-value text-success" id="overviewRisk">Low Risk</span>
+                                <span class="stat-trend positive"><i class="fa-solid fa-circle-check"></i> High Completion Probability</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dual Column Layout: Next Best Action & Schedule -->
+                    <div class="dashboard-row">
+                        <!-- Prescriptive AI Recommendation -->
+                        <div class="dashboard-col col-8">
+                            <div class="content-card">
+                                <div class="card-header">
+                                    <div class="header-title">
+                                        <i class="fa-solid fa-lightbulb text-purple"></i>
+                                        <h3>Prescriptive Next Best Action</h3>
+                                    </div>
+                                    <span class="badge-tag">AI Generated</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="next-action-card" id="overviewNextAction">
+                                        <div class="action-top">
+                                            <span class="action-urgency high">High Priority</span>
+                                            <span class="action-time"><i class="fa-regular fa-clock"></i> Est. 45 Mins</span>
+                                        </div>
+                                        <h4 class="action-title" id="actionTitle">Complete Machine Learning Neural Network Lab Notebook</h4>
+                                        <p class="action-desc" id="actionDesc">Submitting this lab assignment before Friday will ensure your continuous internal marks remain above 90%.</p>
+                                        <div class="action-footer">
+                                            <span class="action-subject"><i class="fa-solid fa-book"></i> MCA-301: Machine Learning</span>
+                                            <button class="small-btn primary" onclick="switchTab('assignments')">Start Task <i class="fa-solid fa-arrow-right"></i></button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Recent Notices Quick View -->
+                                    <div class="notices-preview-box">
+                                        <h4>Latest Announcements</h4>
+                                        <ul class="preview-notice-list" id="overviewNoticeList">
+                                            <li>
+                                                <span class="notice-badge academic">Academic</span>
+                                                <a href="#notices" onclick="switchTab('notices')">Midterm Examinations Schedule for Autumn 2026</a>
+                                                <span class="notice-date">2 days ago</span>
+                                            </li>
+                                            <li>
+                                                <span class="notice-badge placement">Placement</span>
+                                                <a href="#notices" onclick="switchTab('notices')">Google & Microsoft Campus Internship Registration Open</a>
+                                                <span class="notice-date">3 days ago</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Today's Schedule & Quick Attendance -->
+                        <div class="dashboard-col col-4">
+                            <div class="content-card">
+                                <div class="card-header">
+                                    <div class="header-title">
+                                        <i class="fa-regular fa-calendar-check text-blue"></i>
+                                        <h3>Today's Classes</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="schedule-timeline" id="overviewTimeline">
+                                        <div class="timeline-slot active">
+                                            <div class="slot-time">10:00 AM - 11:30 AM</div>
+                                            <div class="slot-subject">Machine Learning</div>
+                                            <div class="slot-details">Lab 402 • Dr. Rajesh Sharma</div>
+                                            <span class="slot-badge live">Upcoming</span>
+                                        </div>
+                                        <div class="timeline-slot">
+                                            <div class="slot-time">01:30 PM - 03:00 PM</div>
+                                            <div class="slot-subject">Cloud Computing & DevOps</div>
+                                            <div class="slot-details">Room 204 • Prof. Priya Patil</div>
+                                        </div>
+                                        <div class="timeline-slot">
+                                            <div class="slot-time">03:15 PM - 04:45 PM</div>
+                                            <div class="slot-subject">Advanced Database Systems</div>
+                                            <div class="slot-details">Lab 101 • Dr. Amit Kulkarni</div>
+                                        </div>
+                                    </div>
+                                    <button class="full-width-btn" onclick="switchTab('timetable')">View Full Week Timetable</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 2: AI ASSISTANT (CHATGPT STYLE + STT/TTS + RAG) -->
+                <section class="tab-pane" id="tab-assistant">
+                    <div class="chat-container-layout">
+                        <!-- Chat Conversation Area -->
+                        <div class="chat-main-card">
+                            <div class="chat-header">
+                                <div class="chat-bot-info">
+                                    <div class="bot-status-avatar"><i class="fa-solid fa-robot"></i></div>
+                                    <div>
+                                        <h3>Cortex Campus Assistant</h3>
+                                        <p><span class="online-indicator"></span> 78 Trained Intents + Grounded Campus RAG Retrieval</p>
+                                    </div>
+                                </div>
+                                <div class="chat-actions">
+                                    <button class="icon-btn" id="clearChatBtn" title="Clear Conversation"><i class="fa-regular fa-trash-can"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="chat-messages-box" id="chatMessages">
+                                <div class="chat-msg bot">
+                                    <div class="msg-avatar"><i class="fa-solid fa-robot"></i></div>
+                                    <div class="msg-bubble">
+                                        <p>Hello Sairaj! I am your <strong>CORTEX 2.0</strong> intelligent campus companion. You can ask me about:</p>
+                                        <ul>
+                                            <li>"What is my current attendance?"</li>
+                                            <li>"When is my next midterm examination?"</li>
+                                            <li>"What assignments are due this week?"</li>
+                                            <li>"Predict my end-semester grades"</li>
+                                            <li>"Explain Convolutional Neural Networks"</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quick Suggestion Chips -->
+                            <div class="chat-quick-chips">
+                                <button class="chip" onclick="sendQuickMessage('What is my attendance status?')">📊 Check Attendance</button>
+                                <button class="chip" onclick="sendQuickMessage('What assignments do I have pending?')">📝 Pending Assignments</button>
+                                <button class="chip" onclick="sendQuickMessage('When is my next examination?')">📅 Next Exam</button>
+                                <button class="chip" onclick="sendQuickMessage('Give me study recommendations for Machine Learning')">💡 Study Tips</button>
+                            </div>
+
+                            <!-- Input Bar -->
+                            <div class="chat-input-wrapper">
+                                <button class="voice-btn" id="voiceDictationBtn" title="Speech Dictation (Microphone)">
+                                    <i class="fa-solid fa-microphone"></i>
+                                </button>
+                                <input type="text" id="chatInput" placeholder="Ask anything about campus, exams, attendance, or coursework..." autocomplete="off">
+                                <button class="send-btn" id="chatSendBtn" title="Send Message">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 3: SUCCESS ADVISOR -->
+                <section class="tab-pane" id="tab-advisor">
+                    <div class="advisor-layout">
+                        <!-- Top Analytics Row -->
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon purple"><i class="fa-solid fa-gauge-high"></i></div>
+                                <div class="stat-info">
+                                    <span class="stat-label">Academic Risk Score</span>
+                                    <span class="stat-value text-success" id="advisorRiskScore">14 / 100</span>
+                                    <span class="stat-trend positive">Minimal Risk of Dropout</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon blue"><i class="fa-solid fa-book-open-reader"></i></div>
+                                <div class="stat-info">
+                                    <span class="stat-label">Weekly Study Hours</span>
+                                    <span class="stat-value" id="advisorStudyHours">18.5 hrs</span>
+                                    <span class="stat-trend positive"><i class="fa-solid fa-arrow-up"></i> +2.5 hrs vs batch avg</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon green"><i class="fa-solid fa-bullseye"></i></div>
+                                <div class="stat-info">
+                                    <span class="stat-label">Predicted Semester GPA</span>
+                                    <span class="stat-value" id="advisorPredictedGpa">8.65</span>
+                                    <span class="stat-trend positive">Based on UCI Performance Model</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon orange"><i class="fa-solid fa-circle-check"></i></div>
+                                <div class="stat-info">
+                                    <span class="stat-label">Task Completion Rate</span>
+                                    <span class="stat-value" id="advisorTaskRate">88%</span>
+                                    <span class="stat-trend positive">7 of 8 tasks completed</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dual Columns: Study Plan Checklist & Recommendations -->
+                        <div class="dashboard-row">
+                            <!-- Interactive Study Plan Checklist -->
+                            <div class="dashboard-col col-6">
+                                <div class="content-card">
+                                    <div class="card-header">
+                                        <div class="header-title">
+                                            <i class="fa-solid fa-list-check text-purple"></i>
+                                            <h3>Weekly Action Plan</h3>
+                                        </div>
+                                        <button class="small-btn glass" onclick="refreshStudyPlan()">Refresh Plan</button>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="section-intro">Complete your priority learning objectives for this week:</p>
+                                        <div class="study-checklist" id="studyPlanChecklist">
+                                            <!-- Dynamically Populated -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Curated Study Resources & Tips -->
+                            <div class="dashboard-col col-6">
+                                <div class="content-card">
+                                    <div class="card-header">
+                                        <div class="header-title">
+                                            <i class="fa-solid fa-compass text-blue"></i>
+                                            <h3>Prescriptive Recommendations</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="recommendation-list" id="recommendationList">
+                                            <!-- Dynamically Populated -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 4: BIOMETRIC ATTENDANCE -->
+                <section class="tab-pane" id="tab-attendance">
+                    <div class="attendance-layout">
+                        <!-- Biometric Punch In Station -->
+                        <div class="dashboard-row">
+                            <!-- FaceLock AI Camera -->
+                            <div class="dashboard-col col-6">
+                                <div class="content-card">
+                                    <div class="card-header">
+                                        <div class="header-title">
+                                            <i class="fa-solid fa-camera text-purple"></i>
+                                            <h3>FaceLock AI Verification</h3>
+                                        </div>
+                                        <span class="badge-tag">WebRTC Camera</span>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <div class="camera-stream-box">
+                                            <video id="cameraVideo" autoplay playsinline muted></video>
+                                            <div class="scanner-laser" id="scannerLaser"></div>
+                                            <div class="scanner-reticle"></div>
+                                        </div>
+                                        <div class="camera-actions">
+                                            <button class="primary-btn" id="startCameraBtn" onclick="toggleCamera()">
+                                                <i class="fa-solid fa-video"></i> Start Camera
+                                            </button>
+                                            <button class="success-btn" id="captureFaceBtn" onclick="verifyFace()" disabled>
+                                                <i class="fa-solid fa-expand"></i> Verify & Punch Attendance
+                                            </button>
+                                        </div>
+                                        <p class="disclaimer-note">
+                                            <i class="fa-solid fa-info-circle"></i> Camera stream runs in-browser. Verified attendance events are securely logged to the institutional database.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- WebAuthn Fingerprint Hardware & Status -->
+                            <div class="dashboard-col col-6">
+                                <div class="content-card">
+                                    <div class="card-header">
+                                        <div class="header-title">
+                                            <i class="fa-solid fa-fingerprint text-blue"></i>
+                                            <h3>Hardware WebAuthn Fingerprint</h3>
+                                        </div>
+                                        <span class="badge-tag">FIDO2 / Touch ID / Hello</span>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <div class="fingerprint-scan-target" onclick="verifyFingerprint()">
+                                            <div class="fingerprint-pulse-ring"></div>
+                                            <i class="fa-solid fa-fingerprint fp-huge-icon"></i>
+                                        </div>
+                                        <button class="primary-btn mt-3" onclick="verifyFingerprint()">
+                                            <i class="fa-solid fa-fingerprint"></i> Trigger Biometric Sensor
+                                        </button>
+                                        <div class="biometric-feedback" id="biometricFeedback">
+                                            Tap sensor or click above to verify identity.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ML Attendance Predictor & History -->
+                        <div class="dashboard-row mt-4">
+                            <!-- ML Risk Predictor Calculator -->
+                            <div class="dashboard-col col-5">
+                                <div class="content-card">
+                                    <div class="card-header">
+                                        <div class="header-title">
+                                            <i class="fa-solid fa-calculator text-green"></i>
+                                            <h3>ML Attendance Risk Predictor</h3>
+                                        </div>
+                                        <span class="badge-tag">RandomForest (20,000 Records)</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Daily Study Hours: <span id="studyHoursVal">4.0</span>h</label>
+                                            <input type="range" min="1" max="12" step="0.5" value="4.0" id="sliderStudyHours" oninput="updatePredictor()">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Sleep Hours: <span id="sleepHoursVal">7.0</span>h</label>
+                                            <input type="range" min="4" max="10" step="0.5" value="7.0" id="sliderSleepHours" oninput="updatePredictor()">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>One-way Commute Time: <span id="travelTimeVal">35</span> mins</label>
+                                            <input type="range" min="5" max="120" step="5" value="35" id="sliderTravelTime" oninput="updatePredictor()">
+                                        </div>
+                                        <div class="prediction-output-card" id="mlPredictionOutput">
+                                            <div class="pred-title">Predicted Attendance Probability:</div>
+                                            <div class="pred-percent text-success" id="predPercent">88.5%</div>
+                                            <div class="pred-badge" id="predRiskBadge">Low Risk (Compliant)</div>
+                                            <p class="pred-rec" id="predRecommendation">Current habits favor strong attendance stability.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Attendance Records History -->
+                            <div class="dashboard-col col-7">
+                                <div class="content-card">
+                                    <div class="card-header">
+                                        <div class="header-title">
+                                            <i class="fa-solid fa-clock-rotate-left text-purple"></i>
+                                            <h3>Recent Attendance Logs</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Date</th>
+                                                        <th>Subject</th>
+                                                        <th>Method</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="attendanceLogsTbody">
+                                                    <!-- Dynamically Populated -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 5: ACADEMIC ANALYTICS -->
+                <section class="tab-pane" id="tab-academics">
+                    <div class="academics-layout">
+                        <!-- Dual Predictors: UCI Student Performance & OULAD -->
+                        <div class="dashboard-row">
+                            <!-- UCI Grade Predictor -->
+                            <div class="dashboard-col col-6">
+                                <div class="content-card">
+                                    <div class="card-header">
+                                        <div class="header-title">
+                                            <i class="fa-solid fa-chart-column text-blue"></i>
+                                            <h3>UCI Performance Grade Predictor</h3>
+                                        </div>
+                                        <span class="badge-tag">MAE 0.91 • R² 0.84</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="section-intro">Trained on academic metrics (Cortez & Silva) to predict end-semester grade:</p>
+                                        <div class="form-row">
+                                            <div class="form-group col-6">
+                                                <label>Midterm 1 Score (0-20)</label>
+                                                <input type="number" id="uciG1" value="14" min="0" max="20">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label>Midterm 2 Score (0-20)</label>
+                                                <input type="number" id="uciG2" value="15" min="0" max="20">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-6">
+                                                <label>Weekly Study Time (1-4 scale)</label>
+                                                <select id="uciStudyTime">
+                                                    <option value="1">&lt; 2 hours</option>
+                                                    <option value="2">2 to 5 hours</option>
+                                                    <option value="3" selected>5 to 10 hours</option>
+                                                    <option value="4">&gt; 10 hours</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label>Absences</label>
+                                                <input type="number" id="uciAbsences" value="2" min="0" max="50">
+                                            </div>
+                                        </div>
+                                        <button class="primary-btn mt-2" onclick="predictUciGrade()">Predict Final Score</button>
+
+                                        <div class="prediction-result-box mt-3" id="uciResultBox">
+                                            <span class="res-label">Predicted Final Grade:</span>
+                                            <span class="res-val" id="uciPredictedScore">14.8 / 20 (Grade A)</span>
+                                            <span class="res-sub text-success">Pass Probability: 94.2%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- OULAD Course Outcome Predictor -->
+                            <div class="dashboard-col col-6">
+                                <div class="content-card">
+                                    <div class="card-header">
+                                        <div class="header-title">
+                                            <i class="fa-solid fa-diagram-project text-purple"></i>
+                                            <h3>OULAD Course Outcome Predictor</h3>
+                                        </div>
+                                        <span class="badge-tag">Classification Accuracy 75.9%</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="section-intro">Trained on Open University Learning Analytics Dataset (32k+ students):</p>
+                                        <div class="form-group">
+                                            <label>Total LMS / VLE Activity Clicks</label>
+                                            <input type="number" id="ouladClicks" value="1250" min="0">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Average Assessment Score (0-100)</label>
+                                            <input type="number" id="ouladScore" value="78" min="0" max="100">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Completed Assessments Count</label>
+                                            <input type="number" id="ouladAssessments" value="4" min="0" max="20">
+                                        </div>
+                                        <button class="primary-btn mt-2" onclick="predictOuladOutcome()">Evaluate Outcome Likelihood</button>
+
+                                        <div class="prediction-result-box mt-3" id="ouladResultBox">
+                                            <span class="res-label">Predicted Course Outcome:</span>
+                                            <span class="res-val text-success" id="ouladOutcome">Pass with Distinction</span>
+                                            <span class="res-sub">Completion Confidence: 82.6%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Current Academic Results Breakdown -->
+                        <div class="content-card mt-4">
+                            <div class="card-header">
+                                <div class="header-title">
+                                    <i class="fa-solid fa-graduation-cap text-orange"></i>
+                                    <h3>Semester Grade Sheet</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Course Code</th>
+                                                <th>Subject Name</th>
+                                                <th>Exam Type</th>
+                                                <th>Score</th>
+                                                <th>Grade</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="academicResultsTbody">
+                                            <!-- Dynamically Populated -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 6: CAREER & RESUME -->
+                <section class="tab-pane" id="tab-career">
+                    <div class="career-layout">
+                        <div class="dashboard-row">
+                            <!-- Resume Parser & Skill Extractor -->
+                            <div class="dashboard-col col-6">
+                                <div class="content-card">
+                                    <div class="card-header">
+                                        <div class="header-title">
+                                            <i class="fa-solid fa-file-invoice text-blue"></i>
+                                            <h3>AI Resume & Skills Analyzer</h3>
+                                        </div>
+                                        <span class="badge-tag">O*NET Software Skills Taxonomy</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="section-intro">Paste your resume content or skills summary below:</p>
+                                        <textarea id="resumeInput" class="custom-textarea" rows="7" placeholder="e.g. Master of Computer Applications student skilled in Python, SQL, Machine Learning, Scikit-Learn, Flask, Docker, Pandas, Git, and PyTorch. Built AI chatbots and biometric attendance applications..."></textarea>
+                                        <button class="primary-btn mt-2" onclick="analyzeResumeSkills()">
+                                            <i class="fa-solid fa-magnifying-glass-chart"></i> Analyze Skill Match & Gaps
+                                        </button>
+
+                                        <div class="detected-skills-box mt-3" id="detectedSkillsBox">
+                                            <h4>Detected O*NET Competencies</h4>
+                                            <div class="skill-tags-cloud" id="skillsCloud">
+                                                <span class="skill-tag">Python</span>
+                                                <span class="skill-tag">Machine Learning</span>
+                                                <span class="skill-tag">Flask</span>
+                                                <span class="skill-tag">SQL</span>
+                                                <span class="skill-tag">Scikit-Learn</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Target Role Match & Recommendations -->
+                            <div class="dashboard-col col-6">
+                                <div class="content-card">
+                                    <div class="card-header">
+                                        <div class="header-title">
+                                            <i class="fa-solid fa-bullseye text-purple"></i>
+                                            <h3>Target Role Match: AI / Data Engineer</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="match-score-card">
+                                            <div class="match-circle">
+                                                <span class="match-number" id="careerMatchPercent">82%</span>
+                                                <span class="match-label">Match</span>
+                                            </div>
+                                            <div class="match-meta">
+                                                <h4>Ready for Entry-Level AI Engineering Roles</h4>
+                                                <p>Your current skill profile strongly matches standard junior ML Engineer & Python Backend postings.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="missing-skills-section mt-3">
+                                            <h4>Recommended Skills to Add</h4>
+                                            <div class="missing-tags-cloud" id="missingSkillsCloud">
+                                                <span class="skill-tag missing">Docker / Kubernetes</span>
+                                                <span class="skill-tag missing">Apache Kafka</span>
+                                                <span class="skill-tag missing">Cloud Architecture (GCP / AWS)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 7: TIMETABLE & EXAMINATIONS -->
+                <section class="tab-pane" id="tab-timetable">
+                    <div class="timetable-layout">
+                        <div class="content-card">
+                            <div class="card-header">
+                                <div class="header-title">
+                                    <i class="fa-regular fa-calendar-days text-purple"></i>
+                                    <h3>Weekly Class Schedule</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="data-table" id="timetableTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Day</th>
+                                                <th>Time</th>
+                                                <th>Course</th>
+                                                <th>Room</th>
+                                                <th>Faculty</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="timetableTbody">
+                                            <!-- Dynamically Populated -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Examination Schedule -->
+                        <div class="content-card mt-4">
+                            <div class="card-header">
+                                <div class="header-title">
+                                    <i class="fa-solid fa-file-pen text-blue"></i>
+                                    <h3>Upcoming Examinations Schedule</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Exam Name</th>
+                                                <th>Subject</th>
+                                                <th>Date</th>
+                                                <th>Time Slot</th>
+                                                <th>Venue</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="examsTbody">
+                                            <!-- Dynamically Populated -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 8: ASSIGNMENTS -->
+                <section class="tab-pane" id="tab-assignments">
+                    <div class="assignments-layout">
+                        <div class="content-card">
+                            <div class="card-header">
+                                <div class="header-title">
+                                    <i class="fa-solid fa-list-check text-orange"></i>
+                                    <h3>Coursework & Assignments</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Assignment Title</th>
+                                                <th>Subject</th>
+                                                <th>Due Date</th>
+                                                <th>Max Marks</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="assignmentsTbody">
+                                            <!-- Dynamically Populated -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 9: NOTICES -->
+                <section class="tab-pane" id="tab-notices">
+                    <div class="notices-layout">
+                        <div class="content-card">
+                            <div class="card-header">
+                                <div class="header-title">
+                                    <i class="fa-regular fa-bell text-blue"></i>
+                                    <h3>Campus Notice Board</h3>
+                                </div>
+                                <button class="small-btn glass" onclick="summarizeNotices()">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> AI Summarize Bulletins
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="notice-cards-grid" id="noticeCardsGrid">
+                                    <!-- Dynamically Populated -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 10: GRIEVANCES -->
+                <section class="tab-pane" id="tab-grievances">
+                    <div class="grievances-layout">
+                        <div class="dashboard-row">
+                            <!-- Submit Grievance Form -->
+                            <div class="dashboard-col col-6">
+                                <div class="content-card">
+                                    <div class="card-header">
+                                        <div class="header-title">
+                                            <i class="fa-solid fa-shield-halved text-purple"></i>
+                                            <h3>Submit Confidential Grievance</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Category</label>
+                                            <select id="grievanceCategory">
+                                                <option value="Academic">Academic / Curriculum</option>
+                                                <option value="Attendance">Attendance Discrepancy</option>
+                                                <option value="Infrastructure">Lab / Infrastructure</option>
+                                                <option value="Hostel">Hostel & Amenities</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Subject</label>
+                                            <input type="text" id="grievanceSubject" placeholder="Brief issue headline...">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Detailed Description</label>
+                                            <textarea id="grievanceDescription" rows="5" class="custom-textarea" placeholder="Explain the situation in detail..."></textarea>
+                                        </div>
+                                        <button class="primary-btn mt-2" onclick="submitGrievance()">
+                                            <i class="fa-solid fa-paper-plane"></i> Submit Grievance
+                                        </button>
+                                        <div id="grievanceAlert" class="mt-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Past Grievances History -->
+                            <div class="dashboard-col col-6">
+                                <div class="content-card">
+                                    <div class="card-header">
+                                        <div class="header-title">
+                                            <i class="fa-solid fa-clock-rotate-left text-blue"></i>
+                                            <h3>Track Filed Requests</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Ref No.</th>
+                                                        <th>Category</th>
+                                                        <th>Subject</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="grievancesTbody">
+                                                    <!-- Dynamically Populated -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Submit Assignment Modal -->
+    <div class="cortex-modal" id="assignmentModal">
+        <div class="modal-backdrop" onclick="closeAssignmentModal()"></div>
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modalAssignmentTitle">Submit Assignment</h3>
+                <button class="close-btn" onclick="closeAssignmentModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="modalAssignmentId">
+                <div class="form-group">
+                    <label>Submission Notes / Repository Link</label>
+                    <textarea id="submissionContent" rows="4" class="custom-textarea" placeholder="Paste your GitHub link, Google Drive link, or text response..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="glass-btn" onclick="closeAssignmentModal()">Cancel</button>
+                <button class="primary-btn" onclick="submitAssignmentAction()">Submit Assignment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='cortex2.js') }}"></script>
+</body>
+</html>

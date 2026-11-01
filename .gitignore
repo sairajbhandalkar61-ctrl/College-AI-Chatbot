@@ -54,3 +54,14 @@ package-lock.json
 !model/attendance_encoder.pkl
 !dataset/Attendance_Prediction.csv
 !dataset/attendance_logs.json
+
+# Large zip archives & local databases
+*.zip
+cortex2.db
+.pytest_cache/
+
+# Exclude raw 400MB+ research datasets from Git to comply with GitHub 100MB limit
+dataset/academic/oulad/studentVle.csv
+dataset/career/job_postings/data job posts.csv
+dataset/academic/oulad/*.csv
+dataset/career/job_postings/*.csv
