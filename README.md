@@ -13,8 +13,9 @@ A full-stack, enterprise-grade AI campus assistant and intelligent biometric por
 
 ## 🚀 Live Demo & Repository
 
-- **GitHub Repository**: [https://github.com/sairajbhandalkar61-ctrl/College-AI-Chatbot](https://github.com/sairajbhandalkar61-ctrl/College-AI-Chatbot)
-- **1-Click Permanent Cloud Deploy**:
+- 🌐 **Permanent 24/7 Live Web App**: **[https://sairajbhandalkar61-ctrl.github.io/College-AI-Chatbot/](https://sairajbhandalkar61-ctrl.github.io/College-AI-Chatbot/)**
+- 💻 **GitHub Repository**: [https://github.com/sairajbhandalkar61-ctrl/College-AI-Chatbot](https://github.com/sairajbhandalkar61-ctrl/College-AI-Chatbot)
+- ☁️ **1-Click Cloud Deploy (Render)**:
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/sairajbhandalkar61-ctrl/College-AI-Chatbot)
 
