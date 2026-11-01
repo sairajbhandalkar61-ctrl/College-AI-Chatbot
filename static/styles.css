@@ -1350,3 +1350,867 @@ input, textarea {
         padding-bottom: 80px;
     }
 }
+
+
+/* ==========================================================================
+   11. BIOMETRIC ATTENDANCE SYSTEM (FaceLock AI & Fingerprint)
+   ========================================================================== */
+
+/* Header Biometric Quick Launcher */
+.header-biometric-badge-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #F5F3FF;
+    border: 1px solid #DDD6FE;
+    color: var(--cortex-purple);
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: var(--radius-pill);
+    transition: all 0.18s ease;
+}
+
+.header-biometric-badge-btn:hover {
+    background: #EDE9FE;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.15);
+}
+
+.bio-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cortex-purple);
+    box-shadow: 0 0 10px rgba(124, 58, 237, 0.8);
+    animation: bioDotPulse 1.5s infinite;
+}
+
+@keyframes bioDotPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.5; }
+}
+
+/* Sidebar Biometric Highlight */
+.nav-link-item.highlight-btn {
+    background: #F3EFFF;
+    color: var(--cortex-purple);
+    font-weight: 600;
+    border: 1px solid #E2D7FE;
+}
+
+.nav-link-item.highlight-btn:hover {
+    background: #EBE5FF;
+}
+
+.live-pill {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: var(--cortex-purple);
+    color: #FFFFFF;
+    padding: 2px 6px;
+    border-radius: 10px;
+    letter-spacing: 0.04em;
+}
+
+/* Biometric Filter Chips */
+.filter-chip-btn.bio-chip {
+    background: #FAF5FF;
+    border-color: #E9D5FF;
+    color: #6B21A8;
+    font-weight: 600;
+}
+
+.filter-chip-btn.bio-chip:hover {
+    background: #F3E8FF;
+    border-color: #C084FC;
+}
+
+/* Action Card Biometric Customization */
+.cortex-action-card.bio-action-card {
+    border-color: #DDD6FE;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FAF5FF 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-size: 10px;
+    font-weight: 700;
+    background: #EDE9FE;
+    color: var(--cortex-purple);
+    padding: 3px 8px;
+    border-radius: 8px;
+    letter-spacing: 0.04em;
+}
+
+.card-icon-bubble.bio-bubble {
+    background: #EDE9FE;
+    color: var(--cortex-purple);
+}
+
+/* Biometric Modal Overlay & Window */
+.biometric-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 10, 30, 0.5);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+    animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.biometric-modal-container {
+    width: 100%;
+    max-width: 680px;
+    background: #FFFFFF;
+    border-radius: 24px;
+    box-shadow: 0 30px 80px -15px rgba(100, 50, 160, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Modal Header */
+.bio-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 24px 28px 16px 28px;
+    border-bottom: 1px solid #F1F1F5;
+}
+
+.bio-security-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #059669;
+    background: #ECFDF5;
+    border: 1px solid #A7F3D0;
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+}
+
+.bio-modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111115;
+    letter-spacing: -0.02em;
+}
+
+.bio-modal-subtitle {
+    font-size: 13px;
+    color: #64748B;
+    margin-top: 2px;
+}
+
+.bio-modal-close-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748B;
+    transition: all 0.15s ease;
+}
+
+.bio-modal-close-btn:hover {
+    background: #F1F5F9;
+    color: #0F172A;
+}
+
+/* Tabs Bar */
+.bio-tabs-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 24px;
+    background: #FBFBFD;
+    border-bottom: 1px solid #ECECF2;
+    overflow-x: auto;
+}
+
+.bio-tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748B;
+    white-space: nowrap;
+    transition: all 0.16s ease;
+}
+
+.bio-tab-btn:hover {
+    background: #F1F1F6;
+    color: #111115;
+}
+
+.bio-tab-btn.active {
+    background: #FFFFFF;
+    color: var(--cortex-purple);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Modal Body */
+.bio-modal-body {
+    padding: 24px 28px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* --- Panel 1: FaceLock Camera Viewport --- */
+.camera-viewport-card {
+    background: #0F172A;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #334155;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.camera-stream-wrapper {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0B0F19;
+}
+
+#face-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1); /* Mirror camera for natural feel */
+}
+
+/* Biometric Scanner HUD */
+.scanner-hud-overlay {
+    position: absolute;
+    inset: 20px;
+    pointer-events: none;
+}
+
+.hud-corner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-color: #A855F7;
+    border-style: solid;
+    opacity: 0.8;
+}
+
+.hud-corner.top-left { top: 0; left: 0; border-width: 3px 0 0 3px; }
+.hud-corner.top-right { top: 0; right: 0; border-width: 3px 3px 0 0; }
+.hud-corner.bottom-left { bottom: 0; left: 0; border-width: 0 0 3px 3px; }
+.hud-corner.bottom-right { bottom: 0; right: 0; border-width: 0 3px 3px 0; }
+
+.scanner-laser-beam {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #C084FC, #FFFFFF, #C084FC, transparent);
+    box-shadow: 0 0 14px #C084FC, 0 0 24px #9333EA;
+    top: 15%;
+    display: none;
+}
+
+.scanner-laser-beam.scanning {
+    display: block;
+    animation: laserScanSweep 1.8s infinite ease-in-out alternate;
+}
+
+@keyframes laserScanSweep {
+    0% { top: 12%; opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { top: 86%; opacity: 0.6; }
+}
+
+.scanner-target-reticle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 190px;
+    border: 2px dashed rgba(192, 132, 252, 0.45);
+    border-radius: 50% / 40%;
+    animation: reticlePulse 2s infinite ease-in-out;
+}
+
+@keyframes reticlePulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); border-color: rgba(192, 132, 252, 0.4); }
+    50% { transform: translate(-50%, -50%) scale(1.04); border-color: rgba(233, 213, 255, 0.85); }
+}
+
+/* Camera Off Overlay */
+.camera-off-overlay {
+    position: absolute;
+    inset: 0;
+    background: #111827;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #94A3B8;
+}
+
+.btn-enable-cam {
+    background: var(--cortex-purple);
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
+}
+
+.btn-enable-cam:hover {
+    background: var(--cortex-purple-hover);
+}
+
+/* Camera Status Bar */
+.camera-status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    background: #1E293B;
+    border-top: 1px solid #334155;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #E2E8F0;
+}
+
+.indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #94A3B8;
+}
+
+.indicator-dot.active {
+    background: #10B981;
+    box-shadow: 0 0 8px #10B981;
+}
+
+.indicator-dot.scanning {
+    background: #A855F7;
+    box-shadow: 0 0 8px #A855F7;
+    animation: indicatorBlink 0.6s infinite alternate;
+}
+
+@keyframes indicatorBlink {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+.match-confidence-badge {
+    font-size: 12px;
+    font-family: var(--font-code);
+    font-weight: 600;
+    color: #C084FC;
+    background: rgba(192, 132, 252, 0.12);
+    padding: 3px 10px;
+    border-radius: 12px;
+}
+
+/* Modal Action Buttons */
+.bio-action-row {
+    margin-top: 18px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.bio-primary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #111115;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    transition: all 0.18s ease;
+}
+
+.bio-primary-btn:hover {
+    background: #272730;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(124, 58, 237, 0.25);
+}
+
+.bio-primary-btn:active {
+    transform: translateY(0);
+}
+
+/* --- Panel 2: Fingerprint Sensor Styles --- */
+.fingerprint-sensor-card {
+    background: #FBFBFD;
+    border: 1px solid #ECECF2;
+    border-radius: 18px;
+    padding: 36px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.fingerprint-scan-zone {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 24px;
+}
+
+.sensor-pulse-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(124, 58, 237, 0.15);
+    pointer-events: none;
+}
+
+.sensor-pulse-ring.ring-1 {
+    animation: ringPulse 2.4s infinite cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sensor-pulse-ring.ring-2 {
+    animation: ringPulse 2.4s infinite 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes ringPulse {
+    0% { transform: scale(0.85); opacity: 0.8; }
+    100% { transform: scale(1.4); opacity: 0; }
+}
+
+.fingerprint-icon-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 2px solid #E2D7FE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cortex-purple);
+    box-shadow: 0 10px 28px rgba(124, 58, 237, 0.15);
+    transition: all 0.2s ease;
+}
+
+.fingerprint-scan-zone:hover .fingerprint-icon-wrapper {
+    transform: scale(1.06);
+    border-color: #C084FC;
+    color: #9333EA;
+}
+
+.fingerprint-icon-wrapper.active-scanning {
+    background: #F3E8FF;
+    border-color: #9333EA;
+    animation: sensorTouchPulse 0.8s infinite alternate;
+}
+
+@keyframes sensorTouchPulse {
+    from { transform: scale(1.02); box-shadow: 0 0 20px rgba(147, 51, 234, 0.4); }
+    to { transform: scale(1.1); box-shadow: 0 0 35px rgba(147, 51, 234, 0.7); }
+}
+
+.sensor-meta-info {
+    max-width: 440px;
+}
+
+.sensor-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111115;
+    margin-bottom: 6px;
+}
+
+.sensor-desc {
+    font-size: 13px;
+    color: #64748B;
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+.webauthn-support-pill {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #059669;
+    background: #ECFDF5;
+    border: 1px solid #A7F3D0;
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+/* --- Panel 3: ML Attendance Risk Predictor --- */
+.predictor-card {
+    background: #FFFFFF;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.predictor-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #7C3AED;
+    background: #F5F3FF;
+    border: 1px solid #DDD6FE;
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+}
+
+.predictor-heading {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111115;
+}
+
+.predictor-sub {
+    font-size: 13px;
+    color: #64748B;
+    line-height: 1.45;
+}
+
+.predictor-controls-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    background: #FBFBFD;
+    border: 1px solid #ECECF2;
+    border-radius: 16px;
+    padding: 18px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.control-label-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.bio-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #E2E8F0;
+    border-radius: 4px;
+    outline: none;
+}
+
+.bio-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--cortex-purple);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(124, 58, 237, 0.4);
+    transition: transform 0.15s ease;
+}
+
+.bio-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+.bio-select {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 12.5px;
+    color: #1E293B;
+    outline: none;
+}
+
+.predictor-button-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.bio-secondary-btn {
+    background: var(--cortex-purple);
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.25);
+    transition: all 0.16s ease;
+}
+
+.bio-secondary-btn:hover {
+    background: var(--cortex-purple-hover);
+    transform: translateY(-1px);
+}
+
+.prediction-result-box {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    animation: toastFadeIn 0.2s ease forwards;
+}
+
+.result-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.prob-num {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0F172A;
+}
+
+.prob-label {
+    font-size: 11px;
+    color: #64748B;
+    display: block;
+}
+
+.risk-badge {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: #ECFDF5;
+    color: #059669;
+}
+
+.result-details p {
+    font-size: 12.5px;
+    color: #475569;
+    line-height: 1.5;
+}
+
+/* --- Panel 4: History & Status --- */
+.attendance-summary-banner {
+    background: linear-gradient(135deg, #FAF5FF, #F3E8FF);
+    border: 1px solid #E9D5FF;
+    border-radius: 16px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.big-percent {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--cortex-purple);
+    line-height: 1;
+}
+
+.summary-meta {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4px;
+}
+
+.summary-meta strong {
+    font-size: 13.5px;
+    color: #111115;
+}
+
+.summary-meta span {
+    font-size: 12px;
+    color: #64748B;
+}
+
+.safe-badge-pill {
+    background: #ECFDF5;
+    border: 1px solid #A7F3D0;
+    color: #059669;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+
+.logs-table-wrapper {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.logs-table-header {
+    background: #F8FAFC;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.logs-table-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.log-row-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid #F1F5F9;
+    font-size: 12.5px;
+}
+
+.log-row-item:last-child {
+    border-bottom: none;
+}
+
+.log-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.log-subject {
+    font-weight: 600;
+    color: #1E293B;
+}
+
+.log-date {
+    font-size: 11px;
+    color: #64748B;
+}
+
+.log-method {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cortex-purple);
+    background: #F3EFFF;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+/* Chat Attendance Report Card */
+.chat-attendance-card {
+    background: #FFFFFF;
+    border: 1px solid #E2D7FE;
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.06);
+    margin-top: 6px;
+}
+
+.att-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.att-card-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #111115;
+}
+
+.att-card-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #059669;
+    background: #ECFDF5;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.att-progress-bar-track {
+    width: 100%;
+    height: 8px;
+    background: #F1F5F9;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.att-progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7C3AED, #A855F7);
+    border-radius: 4px;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.att-card-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    color: #64748B;
+}
+
+@media (max-width: 640px) {
+    .biometric-modal-container {
+        max-height: 90vh;
+        border-radius: 18px;
+    }
+
+    .predictor-controls-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .camera-stream-wrapper {
+        height: 250px;
+    }
+}

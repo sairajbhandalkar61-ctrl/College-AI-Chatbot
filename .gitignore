@@ -49,3 +49,8 @@ package-lock.json
 !model/chatbot_model.pkl
 !model/vectorizer.pkl
 !dataset/intents1.json
+
+!model/attendance_model.pkl
+!model/attendance_encoder.pkl
+!dataset/Attendance_Prediction.csv
+!dataset/attendance_logs.json

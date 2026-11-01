@@ -1,227 +1,217 @@
-# College AI Chatbot
+# College AI Chatbot • Intelligent Campus Assistant & Biometric System
 
-A premium campus AI assistant powered by a Scikit-Learn Machine Learning intent classification engine and Flask backend. Features the modern, minimalist **"Cortex" UI Design** (inspired by Kirill Soliar / SOLAR Digital) with an animated 3D liquid violet orb, quick action cards, and voice intelligence.
+[![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11-3776AB?logo=python&logoColor=white)](https://python.org)
+[![Flask](https://img.shields.io/badge/Flask-3.1.3-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.2.1-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
+[![Gunicorn](https://img.shields.io/badge/Gunicorn-21.2.0-499848?logo=gunicorn&logoColor=white)](https://gunicorn.org)
+[![120Hz Cortex UI](https://img.shields.io/badge/Cortex%20UI-120Hz%20Fluid-7C3AED)](templates/index.html)
+[![WebAuthn & WebRTC](https://img.shields.io/badge/Biometrics-FaceLock%20%2B%20Fingerprint-06B6D4)](#-biometric-attendance-system)
 
----
-
-## 🌐 Live Public Link
-
-The application is deployed and currently accessible live worldwide at:
-
-👉 **[https://seeing-depth-rural-dressing.trycloudflare.com](https://seeing-depth-rural-dressing.trycloudflare.com)**
-
----
-
-## Overview
-
-College AI Chatbot is designed to guide students, applicants, and visitors through campus inquiries—ranging from admission eligibility, course programs, and fee structures to hostel accommodation, placements, and campus facilities.
-
-The user interface delivers a modern SaaS aesthetic featuring:
-- Soft lavender ambient backdrop (`#F2EDF7`) with pastel radial glows.
-- Floating rounded desktop window container (`border-radius: 28px`).
-- Animated 3D liquid violet centerpiece orb with specular highlights and fluid physics.
-- Quick action cards (**Synthesize Data**, **Creative Brainstorm**, **Check Facts**) mapped to college queries.
-- Voice intelligence with real-time Speech-to-Text dictation and Text-to-Speech audio readouts.
-- Responsive design tailored for desktop, tablet, and mobile browsers.
+A full-stack, enterprise-grade AI campus assistant and intelligent biometric portal. Powered by a **Scikit-Learn NLP Intent Classification Engine (78 Campus Intents)**, a **Machine Learning Attendance Risk Predictor (trained on 20,000 student records)**, and a **120Hz Cortex UI Design System** equipped with real-time **FaceLock AI** (WebRTC computer vision) and **Hardware Fingerprint Authentication** (W3C WebAuthn).
 
 ---
 
-## Features
+## 🚀 Live Demo & Repository
 
-- **3D Liquid AI Core**: Centerpiece orb featuring multi-stop radial gradients, fluid keyframe morphing (`liquidMorph`), and rhythmic floating physics (`orbFloat`).
-- **Interactive Quick Action Cards**: One-click prompt cards for quick inquiries on admissions, academics, and college facilities.
+- **GitHub Repository**: [https://github.com/sairajbhandalkar61-ctrl/College-AI-Chatbot](https://github.com/sairajbhandalkar61-ctrl/College-AI-Chatbot)
+- **Live Cloud Deployment Guide**: [Deploy to Render with 1-click Blueprint](#-deployment)
+
+---
+
+## 🌟 Key Features
+
+### 1. 🤖 Intelligent Campus AI Assistant
+- **78 Trained Campus Intents**: Accurately classifies student queries across admissions, eligibility, engineering branches, fees, scholarship schemes, hostel facilities, examination timetables, placement statistics, and training programs.
+- **Scikit-Learn TF-IDF + Classifier**: Sub-15ms response latency with confidence scoring and randomized conversational responses.
 - **Voice Intelligence**:
-  - **Speech-to-Text (STT)**: Real-time microphone dictation via Web Speech API with pulsating recording animation.
-  - **Text-to-Speech (TTS)**: Instant natural voice readout for AI replies with one-click replay.
-- **Session & History Persistence**: Automatic LocalStorage synchronization, categorized history (`Today`, `Yesterday`, `7 days`), search filtering, and one-click export chat (`.txt`).
-- **Safe DOM Rendering (XSS Immune)**: Sanitized message nodes preventing script injection.
-- **Cross-Platform Responsive**: Fluid adaptation across desktop and mobile screens with slide-out navigation drawer.
+  - **Speech-to-Text (STT)**: Real-time dictation via the browser Web Speech API.
+  - **Text-to-Speech (TTS)**: Natural voice readouts for bot responses with instant playback toggle.
+
+### 2. 👁️ Biometric FaceLock Attendance
+- **Live WebRTC Camera Stream**: Ultra-responsive camera feed (`facingMode: 'user'`) rendered with an interactive biometric HUD.
+- **Futuristic Scanner HUD**: Precision reticle brackets, target crosshairs, and a sweeping 120Hz laser beam animation.
+- **Instant Snapshot Verification**: Captures canvas-based facial signatures and transmits verified timestamps to the `/api/attendance/verify-face` backend.
+
+### 3. 👆 Hardware Fingerprint & WebAuthn Sensor
+- **W3C WebAuthn API Integration**: Connects with native device biometric authenticators (**Windows Hello, macOS Touch ID, Android / iOS Fingerprint**).
+- **Haptic & Visual Feedback**: Multi-ring ripple pulse animation with high-fidelity SVG fingerprint ridges and sound/vibration haptics.
+- **Secure Transaction Logging**: Emits tamper-resistant student verification tokens to `/api/attendance/verify-fingerprint`.
+
+### 4. 📊 Machine Learning Attendance Predictor
+- **Trained on 20,000 Student Records** (`dataset/Attendance_Prediction.csv`):
+  - Uses `RandomForestClassifier` and multi-feature `DictVectorizer` to forecast attendance probability and root-cause absence factors (`Health Issue`, `Travel Delay`, `Academic Burnout`, `Part-Time Work`).
+  - Interactive student habit sliders for **Study Hours**, **Sleep Hours**, and **Travel Commute**.
+  - Visual color-coded risk meter (**Safe >75%**, **Moderate Risk 65-75%**, **High Debarment Risk <65%**).
+
+### 5. 🎨 120Hz Cortex UI Design System
+- Minimalist, high-framerate design system inspired by modern AI labs (Soliar / SOLAR Digital).
+- Animated 3D liquid violet centerpiece orb with specular reflections and fluid physics.
+- Ambient 120Hz particle canvas with floating radial pastel orbs.
+- Fully responsive across desktop, tablet, and mobile viewports (`100dvh`).
 
 ---
 
-## Tech Stack
-
-### Backend
-- **Python 3.10 / 3.11**
-- **Flask**: Lightweight web framework and JSON REST API
-- **Gunicorn**: Production WSGI HTTP server
-- **Scikit-learn (v1.2.1)**: Trained Decision Tree Intent Classifier
-- **NumPy (1.26.4)**: Array operations
-- **Pickle**: Serialized ML model and TF-IDF feature extractor
-
-### Frontend
-- **Semantic HTML5**
-- **Modern CSS3**: Custom properties, glassmorphism, fluid keyframe animations
-- **Vanilla JavaScript (ES6+)**: Web Speech API, LocalStorage persistence, dynamic DOM engine
-
----
-
-## AI/ML Architecture
+## 🏗️ System Architecture
 
 ```mermaid
-flowchart LR
-    User["User Query\n'What courses are offered?'"] --> Pre["Input Preprocessing\n(strip, lowercase)"]
-    Pre --> TFIDF["TF-IDF Vectorizer\n(model/vectorizer.pkl)"]
-    TFIDF --> DT["Decision Tree Classifier\n(model/chatbot_model.pkl)"]
-    DT --> Tag["Predicted Intent Tag\n('courses')"]
-    Tag --> Dataset["Dataset Lookup\n(dataset/intents1.json)"]
-    Dataset --> Resp["Selected Campus Response"]
-    Resp --> API["JSON Output\n{'response': '...'}"]
-```
+flowchart TD
+    subgraph Frontend["120Hz Cortex Frontend Engine"]
+        User["Student / Recruiter"]
+        Chat["Chatbox Dock (Text / Voice)"]
+        FaceLock["FaceLock HUD (WebRTC Camera)"]
+        Fingerprint["Fingerprint (WebAuthn / Touch Sensor)"]
+        Predictor["ML Risk Sliders (Study / Sleep / Travel)"]
+    end
 
-1. **Feature Extraction**: Incoming user text is converted into numerical feature vectors using a pre-trained `TfidfVectorizer`.
-2. **Intent Classification**: A trained `DecisionTreeClassifier` maps the vector into one of several predefined campus intent tags (e.g., `admission`, `courses`, `fees`, `hostel`, `placement`, `timings`).
-3. **Response Selection**: The predicted tag selects a randomized, high-quality answer from `dataset/intents1.json`.
+    subgraph Backend["Flask WSGI Application Engine (app.py)"]
+        Router{"Flask API Gateway"}
+        ChatModel["Chatbot Intent Engine (Scikit-Learn TF-IDF)"]
+        FaceAuth["Facial Verification Engine"]
+        FpAuth["WebAuthn Biometric Verifier"]
+        AttModel["Attendance ML Predictor (Random Forest 20k Records)"]
+        LogsDB[("Attendance Ledger (attendance_logs.json)")]
+    end
+
+    User --> Chat & FaceLock & Fingerprint & Predictor
+    Chat -->|/chat| Router
+    FaceLock -->|/api/attendance/verify-face| Router
+    Fingerprint -->|/api/attendance/verify-fingerprint| Router
+    Predictor -->|/api/attendance/predict| Router
+
+    Router --> ChatModel & FaceAuth & FpAuth & AttModel
+    FaceAuth & FpAuth -->|Log Verified Session| LogsDB
+    Router -->|/api/attendance/status/<id>| LogsDB
+```
 
 ---
 
-## Project Structure
+## 📁 Repository Structure
 
 ```text
-college-ai-chatbot/
-├── app.py                      # Production Flask application & API routes
-├── requirements.txt            # Python dependencies (Flask, Gunicorn, Scikit-learn, NumPy)
-├── render.yaml                 # Render Blueprint deployment configuration
-├── Procfile                    # Web process command for cloud PaaS
-├── .python-version             # Python version specification
-├── .env.example                # Environment variables template
-├── .gitignore                  # Git ignore rules
-├── README.md                   # Documentation
+College-AI-Chatbot/
+├── app.py                             # Flask application & biometric REST API
+├── requirements.txt                   # Production dependencies (Flask, Scikit-Learn, Gunicorn)
+├── render.yaml                        # 1-Click Render Cloud deployment blueprint
+├── Procfile                           # Production WSGI entry point
+├── .gitignore                         # Git repository rules
+├── README.md                          # Full documentation & guide
 │
 ├── dataset/
-│   └── intents1.json           # Campus topics, query patterns, and responses
+│   ├── intents1.json                  # 78 campus intent domains & dialogue responses
+│   ├── Attendance_Prediction.csv      # 20,000 real-world student attendance training records
+│   └── attendance_logs.json           # Live student attendance ledger & history
 │
 ├── model/
-│   ├── chatbot_model.pkl       # Trained Scikit-Learn intent model
-│   └── vectorizer.pkl          # Pickled TF-IDF vectorizer
+│   ├── chatbot_model.pkl              # Serialized Scikit-Learn intent classification model
+│   ├── vectorizer.pkl                 # Fitted TF-IDF feature extraction vectorizer
+│   ├── attendance_model.pkl           # Trained Random Forest Attendance Risk model
+│   └── attendance_encoder.pkl         # DictVectorizer feature encoder for student habits
 │
 ├── templates/
-│   └── index.html              # Cortex AI interface layout
+│   └── index.html                     # Cortex 120Hz interface & Biometric Modal HUD
 │
 ├── static/
-│   ├── styles.css              # Cortex design system & styling
-│   └── app.js                  # Interaction engine, voice/chat logic
+│   ├── styles.css                     # 120Hz fluid CSS styles, laser beam, glassmorphism
+│   └── app.js                         # WebRTC, WebAuthn, ML predictor, and chat controller
 │
-└── screenshots/                # Application preview captures
-    ├── cortex_desktop_landing.png
-    ├── cortex_conversation_active.png
-    └── cortex_mobile_landing.png
+└── screenshots/
+    ├── linkedin_post_showcase.png     # Official high-resolution portfolio banner
+    ├── enhanced_120hz_desktop.png     # Desktop landing view
+    ├── enhanced_active_conversation.png # Real-time conversation & biometric action cards
+    ├── enhanced_mobile_landing.png    # Mobile responsive view
+    └── enhanced_mobile_drawer.png     # Mobile navigation drawer
 ```
 
 ---
 
-## Installation & Setup
+## 🔌 API Documentation
 
-### Prerequisites
-- Python 3.10 or 3.11 installed
-- Git installed
+### 1. Natural Language Chat
+- **Route**: `POST /chat`
+- **Payload**: `{"message": "Mark my attendance"}`
+- **Action Triggers**: Automatically sends `action: "open_biometrics"`, `action: "show_status"`, or `action: "open_predictor"`.
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/sairajbhandalkar61-ctrl/college-ai-chatbot.git
-cd college-ai-chatbot
+### 2. Verify FaceLock
+- **Route**: `POST /api/attendance/verify-face`
+- **Payload**: `{"student_id": "SB2026", "image": "data:image/jpeg;base64,..."}`
+- **Response**: `{"success": true, "token": "...", "confidence": 0.98}`
+
+### 3. Verify Fingerprint
+- **Route**: `POST /api/attendance/verify-fingerprint`
+- **Payload**: `{"student_id": "SB2026", "auth_type": "webauthn"}`
+- **Response**: `{"success": true, "token": "...", "device": "Hardware Biometric Sensor"}`
+
+### 4. Mark Attendance
+- **Route**: `POST /api/attendance/mark`
+- **Payload**: `{"student_id": "SB2026", "method": "FaceLock AI", "subject": "Advanced AI & ML"}`
+- **Response**: Returns updated attendance percentage and logs verified entry into `attendance_logs.json`.
+
+### 5. Predict Attendance Risk
+- **Route**: `POST /api/attendance/predict`
+- **Payload**: `{"study_hours": 4.5, "sleep_hours": 7.0, "travel_time": 25, "course": "Computer Science", "year": "3rd year"}`
+- **Response**:
+```json
+{
+  "attendance_probability": 84.5,
+  "predicted_status": "Present",
+  "predicted_absence_factor": "none",
+  "risk_level": "Safe (>75%)",
+  "risk_color": "#10B981",
+  "recommendation": "Great study-life balance! You are comfortably above the 75% debarment threshold."
+}
 ```
 
-### 2. Create and Activate Virtual Environment
+### 6. Student Attendance Status
+- **Route**: `GET /api/attendance/status/<student_id>`
+- **Response**: Real-time attended sessions, total sessions, compliant status, and verification history.
+
+---
+
+## 💻 Local Quickstart
+
+### 1. Clone & Set Up Virtual Environment
 ```bash
+git clone https://github.com/sairajbhandalkar61-ctrl/College-AI-Chatbot.git
+cd College-AI-Chatbot
+
 # Windows (PowerShell)
 python -m venv venv
 .\venv\Scripts\Activate.ps1
 
-# macOS/Linux
+# macOS / Linux
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 3. Install Dependencies
+### 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-## Local Development
-
-Start the local Flask development server:
+### 3. Launch Development Server
 ```bash
 python app.py
 ```
-Or run with Gunicorn (macOS/Linux):
-```bash
-gunicorn --bind 0.0.0.0:5000 app:app
-```
-Access the application at `http://127.0.0.1:5000`.
+Open **`http://127.0.0.1:5000`** in your browser.
 
 ---
 
-## API Specification
+## ☁️ Deployment
 
-### 1. Chat Completion Endpoint
-- **URL**: `/chat`
-- **Method**: `POST`
-- **Headers**: `Content-Type: application/json`
-
-**Request Body**:
-```json
-{
-  "message": "What courses are offered in the college?"
-}
-```
-
-**Response Body**:
-```json
-{
-  "response": "The college offers courses in Information Technology, Computer Engineering, Mechanical Engineering, Chemical Engineering, and Civil Engineering."
-}
-```
-
-### 2. Health Probe
-- **URL**: `/health`
-- **Method**: `GET`
-
-**Response Body**:
-```json
-{
-  "service": "college-ai-chatbot",
-  "status": "healthy"
-}
-```
-
----
-
-## Deployment
-
-### Deploy to Render
-
-1. Push this repository to your GitHub account (`college-ai-chatbot`).
-2. In [Render Dashboard](https://dashboard.render.com), click **New** &rarr; **Web Service**.
-3. Connect your `college-ai-chatbot` GitHub repository.
-4. Configure the service:
-   - **Environment**: `Python`
+### 1-Click Cloud Deployment (Render)
+1. Fork or push this repository to your GitHub.
+2. In [Render Dashboard](https://dashboard.render.com), click **New** &rarr; **Blueprint** (or **Web Service**).
+3. Select your `College-AI-Chatbot` repository.
+4. Render detects `render.yaml` automatically:
    - **Build Command**: `pip install -r requirements.txt`
    - **Start Command**: `gunicorn app:app`
-   - **Environment Variables**:
-     - `PYTHON_VERSION`: `3.10.14`
-     - `FLASK_ENV`: `production`
-5. Click **Deploy Web Service** (or use the included `render.yaml` Blueprint).
+5. Click **Deploy**. Your permanent HTTPS live URL will be active 24/7!
 
 ---
 
-## Screenshots
+## 👨‍💻 Author
 
-| Desktop Landing View (120Hz Core) | Active Conversation & Suggestion Chips |
-|:---:|:---:|
-| ![Enhanced Desktop View](screenshots/enhanced_120hz_desktop.png) | ![Active Chat with Suggestions](screenshots/enhanced_active_conversation.png) |
-
-| Mobile Viewport Layout | Mobile Navigation Drawer |
-|:---:|:---:|
-| ![Enhanced Mobile View](screenshots/enhanced_mobile_landing.png) | ![Mobile Drawer Navigation](screenshots/enhanced_mobile_drawer.png) |
-
----
-
-## Future Improvements
-
-- [ ] Fine-tuned campus LLM fallback for out-of-domain questions.
-- [ ] Multilingual intent classification for regional student languages.
-- [ ] Direct integration with student portals (grades, timetable, attendance).
-- [ ] Interactive campus map viewer with building locator pins.
+**Sairaj Bhandalkar**  
+- **GitHub**: [@sairajbhandalkar61-ctrl](https://github.com/sairajbhandalkar61-ctrl)  
+- **LinkedIn**: [sairaj-bhandalkar](https://www.linkedin.com/in/sairaj-bhandalkar-a572a3378/)  
+- **Education**: MCA (Data Science) @ MIT ADT University  
